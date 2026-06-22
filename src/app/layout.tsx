@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
+import Footer from "@/components/Footer";
 
 
 const jetBrainsMono = JetBrains_Mono({
@@ -36,6 +37,7 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
+        <Footer />
       </body>
 
     </html>
