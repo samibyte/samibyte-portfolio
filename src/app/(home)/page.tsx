@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-const Home = () => {
+import { getProjects } from "@/lib/projectStore";
+
+const Home = async () => {
+  const projects = await getProjects();
+
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
       {/* Global Background Decorations */}
@@ -30,7 +34,7 @@ const Home = () => {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
+        <ProjectsSection projects={projects} />
         <ContactSection />
       </div>
     </div>

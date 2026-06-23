@@ -1,12 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiArrowNarrowRight } from "react-icons/hi";
+import { IconArrowNarrowRight } from "@/components/ui/Icons";
 import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { projects } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
-const ProjectsSection = () => {
+interface ProjectsSectionProps {
+  projects: Project[];
+}
+
+const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
   return (
     <section className="py-20 relative bg-matrix-green/[0.01]">
        {/* Background blend */}
@@ -20,7 +24,7 @@ const ProjectsSection = () => {
             <p className="mt-4 text-text-secondary text-sm max-w-xl font-sans">Strategic transmissions from my development laboratory.</p>
           </div>
           <Link href="/projects" className="flex items-center gap-2 font-mono text-xs font-bold text-matrix-green hover:underline tracking-widest uppercase">
-            Full project index <HiArrowNarrowRight />
+            Full project index <IconArrowNarrowRight size={14} />
           </Link>
         </div>
         

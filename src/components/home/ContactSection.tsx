@@ -1,23 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiMail } from "react-icons/hi";
+import { IconMail, IconGithub, IconLinkedin, IconTwitter } from "@/components/ui/Icons";
 import Link from "next/link";
-import BrandIcon from "@/components/ui/BrandIcon";
-
-import { 
-  SiGithub 
-} from "react-icons/si";
-import { 
-  FaLinkedin, FaTwitter 
-} from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const ContactSection = () => {
   const socials = [
-    { name: "Github", icon: SiGithub, href: "https://github.com/samibyte", color: "#FFFFFF" },
-    { name: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/in/samibyte", color: "#0A66C2" },
-    { name: "Twitter", icon: FaTwitter, href: "https://x.com/samibyt3", color: "#1DA1F2" },
+    { name: "Github", icon: IconGithub, href: "https://github.com/samibyte", color: "#FFFFFF" },
+    { name: "LinkedIn", icon: IconLinkedin, href: "https://www.linkedin.com/in/samibyte", color: "#0A66C2" },
+    { name: "Twitter", icon: IconTwitter, href: "https://x.com/samibyt3", color: "#1DA1F2" },
   ];
 
   
@@ -86,7 +78,7 @@ const ContactSection = () => {
                   className="group relative flex h-14 w-full max-w-sm items-center justify-center overflow-hidden rounded-md bg-matrix-green px-12 transition-all hover:bg-matrix-bright sm:w-auto"
                 >
                   <div className="relative z-10 flex items-center gap-3 font-mono text-sm font-black tracking-[0.25em] text-space-black uppercase">
-                    <HiMail className="text-xl transition-transform group-hover:scale-125" />
+                    <IconMail className="text-xl transition-transform group-hover:scale-125" />
                     Open Transmission
                   </div>
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
@@ -104,11 +96,9 @@ const ContactSection = () => {
                       className="group flex flex-col items-center gap-2"
                     >
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-matrix-border/30 bg-white/[0.02] transition-all group-hover:border-matrix-green group-hover:bg-matrix-green/5 group-hover:shadow-[0_0_20px_rgba(0,255,65,0.2)]">
-                        <BrandIcon 
-                          Icon={social.icon} 
-                          color={social.color} 
-                          size="text-xl"
-                          className="opacity-70 group-hover:opacity-100 group-hover:scale-110"
+                        <social.icon 
+                          className="opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                          size={20}
                         />
                       </div>
                       <span className="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-matrix-green">

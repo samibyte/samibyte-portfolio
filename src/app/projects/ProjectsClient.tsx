@@ -2,9 +2,13 @@
 
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { projects } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
-const ProjectsClient = () => {
+interface Props {
+  projects: Project[];
+}
+
+const ProjectsClient = ({ projects }: Props) => {
   return (
     <div className="relative min-h-screen pt-32 pb-20">
       {/* Background Decorative Element */}

@@ -3,41 +3,40 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { 
-  HiMail, 
-  HiArrowNarrowRight, 
-  HiChevronRight 
-} from "react-icons/hi";
-import { 
-  SiGithub,
-} from "react-icons/si";
-import { SlSocialLinkedin, SlSocialTwitter  } from "react-icons/sl";
+  IconMail, 
+  IconArrowNarrowRight, 
+  IconChevronRight,
+  IconGithub,
+  IconLinkedin,
+  IconTwitter,
+} from "@/components/ui/Icons";
 
 const socialLinks = [
   {
     name: "Email",
     value: "sami@email.com",
-    icon: HiMail,
+    icon: IconMail,
     href: "mailto:sami@email.com",
     color: "text-matrix-green"
   },
   {
     name: "LinkedIn",
     value: "linkedin.com/in/samibyte",
-    icon: SlSocialLinkedin,
+    icon: IconLinkedin,
     href: "https://www.linkedin.com/in/samibyte",
     color: "text-blue-400"
   },
   {
     name: "GitHub",
     value: "github.com/samibyte",
-    icon: SiGithub,
+    icon: IconGithub,
     href: "https://github.com/samibyte",
     color: "text-text-primary"
   },
   {
     name: "Twitter",
     value: "@samibyt3",
-    icon: SlSocialTwitter,
+    icon: IconTwitter,
     href: "https://x.com/samibyt3",
     color: "text-cyan-400"
   }
@@ -155,7 +154,7 @@ const ContactClient = () => {
               >
                 <span className="flex items-center justify-center gap-2">
                   {isSubmitting ? "TRANSMITTING..." : isSent ? "MESSAGE RECEIVED" : "SEND MESSAGE"}
-                  {!isSubmitting && !isSent && <HiArrowNarrowRight className="transition-transform group-hover:translate-x-1" />}
+                  {!isSubmitting && !isSent && <IconArrowNarrowRight className="transition-transform group-hover:translate-x-1" />}
                 </span>
               </button>
 
@@ -206,7 +205,7 @@ const ContactClient = () => {
                         <span className="font-sans text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors">{link.value}</span>
                       </div>
                     </div>
-                    <HiChevronRight className="text-xl text-text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-matrix-green" />
+                    <IconChevronRight className="text-xl text-text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-matrix-green" />
                   </motion.a>
                 ))}
               </div>

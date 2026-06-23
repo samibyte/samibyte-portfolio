@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { HiArrowNarrowRight, HiDownload } from "react-icons/hi";
+import { IconArrowNarrowRight, IconDownload } from "@/components/ui/Icons";
 import Link from "next/link";
 import Counter from "@/components/ui/Counter";
 
@@ -67,12 +67,12 @@ const AboutSection = () => {
 
             <div className="mt-12 flex flex-wrap items-center gap-6">
               <Link href="/about" className="inline-flex items-center gap-2 font-mono text-md font-bold text-matrix-green hover:underline">
-                Read full story <HiArrowNarrowRight />
+                Read full story <IconArrowNarrowRight />
               </Link>
               
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <a href="#" className="inline-flex items-center gap-3 rounded-md border border-matrix-green/30 bg-matrix-green/5 px-6 py-2.5 font-mono text-md font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black">
-                  <HiDownload className="text-sm" />
+                  <IconDownload className="text-sm" />
                   DOWNLOAD CV
                 </a>
               </motion.div>

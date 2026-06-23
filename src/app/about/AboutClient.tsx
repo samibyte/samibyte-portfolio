@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { HiDownload } from "react-icons/hi";
+import { IconDownload } from "@/components/ui/Icons";
 import Counter from "@/components/ui/Counter";
 
 const AboutClient = () => {
@@ -10,9 +10,9 @@ const AboutClient = () => {
   const fullJson = `{
   "name": "Sami Adnan",
   "role": "Full-Stack Developer",
-  "location": "\ud83c\udf0d Earth",
+  "location": "🌍 Earth",
   "available": true,
-  "coffee_per_day": "\u221e"
+  "coffee_per_day": "∞"
 }`;
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const AboutClient = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-md border border-matrix-green bg-matrix-green/5 px-8 py-3 font-mono text-sm font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black hover:shadow-[0_0_20px_rgba(0,255,65,0.4)]"
               >
-                <HiDownload className="text-lg" />
+                <IconDownload className="text-lg" />
                 DOWNLOAD CV
               </a>
             </motion.div>
@@ -91,7 +91,7 @@ const AboutClient = () => {
                   <div className="h-3 w-3 rounded-full bg-yellow-500/50" />
                   <div className="h-3 w-3 rounded-full bg-green-500/50" />
                 </div>
-                <span className="ml-2 font-mono text-xs text-text-muted">profile.json \u2014 samibyte@earth</span>
+                <span className="ml-2 font-mono text-xs text-text-muted">profile.json — samibyte@earth</span>
               </div>
               <div className="p-6 font-mono text-sm leading-relaxed whitespace-pre font-medium text-matrix-green/90">
                 {typedJson}
@@ -107,7 +107,7 @@ const AboutClient = () => {
               {[
                 { label: "Years Exp", value: "2+" },
                 { label: "Projects Built", value: "10+" },
-                { label: "Cups of Coffee", value: "\u221e" },
+                { label: "Cups of Coffee", value: "∞" },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}

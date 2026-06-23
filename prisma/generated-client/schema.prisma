@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id              String   @id // slug, e.g. "devflow"
+  title           String
+  description     String
+  longDescription String
+  videoUrl        String?
+  githubUrl       String
+  demoUrl         String
+  order           Int      @default(0) // for drag-to-reorder
+  techStack       Json // {name, icon, color, variant}[]
+  problem         String
+  solution        String
+  challenges      String
+  learnings       String
+  results         Json // string[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

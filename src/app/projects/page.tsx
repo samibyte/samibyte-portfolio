@@ -6,8 +6,11 @@ export const metadata: Metadata = {
   description: "Browse a collection of high-performance web applications and projects built by Sami Adnan, featuring creative engineering, clean code, and advanced UX design.",
 };
 
-const Projects = () => {
-  return <ProjectsClient />;
+import { getProjects } from "@/lib/projectStore";
+
+const Projects = async () => {
+  const projects = await getProjects();
+  return <ProjectsClient projects={projects} />;
 };
 
 export default Projects;

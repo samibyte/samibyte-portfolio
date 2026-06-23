@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { IconMenu, IconX } from "@/components/ui/Icons";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface NavItem {
@@ -105,7 +105,7 @@ const Navbar = () => {
             aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? <HiX /> : <HiMenuAlt3 />}
+            {isMobileOpen ? <IconX /> : <IconMenu />}
           </button>
         </div>
       </nav>

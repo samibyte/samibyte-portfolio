@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import {
-  FiArrowLeft, FiGithub, FiExternalLink, FiTarget, FiZap,
-  FiAlertTriangle, FiAward, FiCpu, FiPlay, FiCheckCircle,
-} from "react-icons/fi";
+  IconArrowLeft, IconGithub, IconExternalLink, IconTarget, IconZap,
+  IconAlertTriangle, IconAward, IconCpu, IconPlay, IconCheckCircle,
+} from "@/components/ui/Icons";
 import Link from "next/link";
 import BrandIcon from "@/components/ui/BrandIcon";
-import { projects } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
 interface Props {
-  slug: string;
+  project: Project;
 }
 
 const chapters = [
@@ -21,8 +21,7 @@ const chapters = [
   { id: "triumph",   label: "The Outcome",      num: "04" },
 ];
 
-const ProjectDetailsShell = ({ slug }: Props) => {
-  const project = useMemo(() => projects.find((p) => p.id === slug), [slug]);
+const ProjectDetailsShell = ({ project }: Props) => {
   const [activeSection, setActiveSection] = useState("overview");
   const [showStickyNav, setShowStickyNav] = useState(false);
 
@@ -43,8 +42,6 @@ const ProjectDetailsShell = ({ slug }: Props) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  if (!project) return null;
 
   const videoSrc = project.videoUrl
     ? `${project.videoUrl}${project.videoUrl.includes("?") ? "&" : "?"}autoplay=1&mute=0&rel=0`
@@ -68,7 +65,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                 href="/projects"
                 className="flex items-center gap-2 text-text-muted hover:text-white transition-colors"
               >
-                <FiArrowLeft className="text-sm" />
+                <IconArrowLeft className="text-sm" />
                 <span className="font-mono text-[10px] tracking-widest uppercase">Projects</span>
               </Link>
               <span className="text-white/10">/</span>
@@ -81,7 +78,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-lg border border-white/10 px-4 py-2 font-mono text-[10px] font-bold tracking-widest text-text-secondary uppercase hover:border-white/20 hover:text-white transition-all"
               >
-                <FiGithub /> Repo
+                <IconGithub size={14} /> Repo
               </a>
               <a
                 href={project.demoUrl}
@@ -89,7 +86,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-lg bg-matrix-green px-4 py-2 font-mono text-[10px] font-bold tracking-widest text-space-black uppercase hover:brightness-110 transition-all"
               >
-                Live Demo <FiExternalLink />
+                Live Demo <IconExternalLink size={14} />
               </a>
             </div>
           </div>
@@ -110,7 +107,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
             href="/projects"
             className="group inline-flex items-center gap-2 text-text-muted hover:text-white transition-colors"
           >
-            <FiArrowLeft className="text-sm transition-transform group-hover:-translate-x-1" />
+            <IconArrowLeft className="text-sm transition-transform group-hover:-translate-x-1" />
             <span className="font-mono text-xs tracking-widest uppercase">All Projects</span>
           </Link>
         </motion.div>
@@ -167,7 +164,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
 
             {/* Chapter I — Problem */}
             <section id="overview" className="mb-20 scroll-mt-24">
-              <ChapterHeader num="01" label="The Problem" color="red" icon={<FiTarget />} />
+              <ChapterHeader num="01" label="The Problem" color="red" icon={<IconTarget />} />
               <div className="mt-8 space-y-6">
                 <p className="text-base leading-[1.9] text-text-secondary md:text-[17px]">
                   {project.caseStudy?.problem}
@@ -182,7 +179,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
 
             {/* Chapter II — Solution */}
             <section id="journey" className="mb-20 scroll-mt-24">
-              <ChapterHeader num="02" label="The Solution" color="green" icon={<FiZap />} />
+              <ChapterHeader num="02" label="The Solution" color="green" icon={<IconZap />} />
               <p className="mt-8 text-base leading-[1.9] text-text-secondary md:text-[17px]">
                 {project.caseStudy?.solution}
               </p>
@@ -190,7 +187,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
 
             {/* Chapter III — Challenge */}
             <section id="hurdle" className="mb-20 scroll-mt-24">
-              <ChapterHeader num="03" label="The Challenge" color="yellow" icon={<FiAlertTriangle />} />
+              <ChapterHeader num="03" label="The Challenge" color="yellow" icon={<IconAlertTriangle />} />
               <div className="mt-8 rounded-2xl border border-yellow-500/10 bg-yellow-500/[0.03] p-8">
                 <p className="text-base leading-[1.9] text-text-secondary md:text-[17px]">
                   {project.caseStudy?.challenges}
@@ -200,7 +197,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
 
             {/* Chapter IV — Outcome */}
             <section id="triumph" className="mb-20 scroll-mt-24">
-              <ChapterHeader num="04" label="The Outcome" color="green" icon={<FiAward />} />
+              <ChapterHeader num="04" label="The Outcome" color="green" icon={<IconAward />} />
               <div className="mt-8 space-y-8">
                 {/* Results as cards */}
                 <ul className="space-y-4">
@@ -209,7 +206,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                       key={i}
                       className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 hover:border-matrix-green/20 hover:bg-matrix-green/[0.02] transition-all"
                     >
-                      <FiCheckCircle className="mt-0.5 flex-none text-matrix-green" />
+                      <IconCheckCircle className="mt-0.5 flex-none text-matrix-green" />
                       <p className="text-sm leading-relaxed text-text-secondary">{result}</p>
                     </li>
                   ))}
@@ -241,7 +238,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                         Live Demo Feed
                       </span>
                     </div>
-                    <FiPlay className="text-text-muted text-xs" />
+                    <IconPlay className="text-text-muted text-xs" />
                   </div>
                   <div className="aspect-video">
                     <iframe
@@ -284,7 +281,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
               {/* Tech Stack */}
               <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
                 <div className="mb-4 flex items-center gap-2">
-                  <FiCpu className="text-text-muted text-xs" />
+                  <IconCpu className="text-text-muted text-xs" />
                   <p className="font-mono text-[9px] font-bold tracking-[0.35em] text-text-muted uppercase">
                     Tech Stack
                   </p>
@@ -295,7 +292,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                       key={t.name}
                       className="flex items-center gap-3 rounded-lg border border-white/[0.05] bg-white/[0.02] p-3 hover:border-matrix-green/20 hover:bg-matrix-green/[0.03] transition-all"
                     >
-                      <BrandIcon Icon={t.icon} color={t.color} size="text-lg" />
+                      <BrandIcon icon={t.icon} color={t.color} variant={t.variant} size="text-lg" />
                       <span className="font-mono text-[11px] text-text-secondary">{t.name}</span>
                     </div>
                   ))}
@@ -310,7 +307,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                   rel="noopener noreferrer"
                   className="group flex w-full items-center justify-center gap-3 rounded-xl bg-matrix-green py-4 font-mono text-sm font-bold tracking-widest text-space-black uppercase hover:brightness-110 transition-all"
                 >
-                  Live Demo <FiExternalLink className="transition-transform group-hover:translate-x-0.5" />
+                  Live Demo <IconExternalLink className="transition-transform group-hover:translate-x-0.5" />
                 </a>
                 <a
                   href={project.githubUrl}
@@ -318,7 +315,7 @@ const ProjectDetailsShell = ({ slug }: Props) => {
                   rel="noopener noreferrer"
                   className="flex w-full items-center justify-center gap-3 rounded-xl border border-white/10 py-4 font-mono text-sm font-bold tracking-widest text-text-secondary uppercase hover:border-white/20 hover:text-white transition-all"
                 >
-                  <FiGithub /> View Source
+                  <IconGithub /> View Source
                 </a>
               </div>
 

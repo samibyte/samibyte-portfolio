@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { HiArrowNarrowRight } from "react-icons/hi";
+import { IconArrowNarrowRight } from "@/components/ui/Icons";
 import Link from "next/link";
 import GlitchText from "@/components/ui/GlitchText";
 
@@ -90,7 +90,7 @@ const HeroSection = () => {
               className="group flex items-center gap-2 rounded-md bg-matrix-green px-8 py-3 font-mono text-sm font-bold tracking-widest text-space-black transition-all hover:scale-105 hover:bg-matrix-bright hover:shadow-[0_0_25px_rgba(0,255,65,0.4)]"
             >
               cd Resume
-              <HiArrowNarrowRight className="transition-transform group-hover:translate-x-1" />
+              <IconArrowNarrowRight className="transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
         </motion.div>

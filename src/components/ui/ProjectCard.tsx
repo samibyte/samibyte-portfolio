@@ -1,16 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink, FiMaximize2, FiCpu } from "react-icons/fi";
-import type { IconType } from "react-icons";
+import { IconGithub, IconExternalLink, IconMaximize, IconCpu } from "@/components/ui/Icons";
 import Link from "next/link";
 import BrandIcon from "./BrandIcon";
-
-interface TechItem {
-  name: string;
-  icon: IconType;
-  color?: string;
-}
+import type { TechItem } from "@/data/projects";
 
 interface ProjectCardProps {
   id: string;
@@ -53,7 +47,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
       <div className="relative flex flex-1 flex-col p-6 md:p-8">
         {/* Background Decorative Icon */}
         <div className="absolute -top-4 -right-4 opacity-[0.03] transition-all duration-500 group-hover:scale-110 group-hover:opacity-[0.08] pointer-events-none">
-          <FiCpu size={160} />
+          <IconCpu size={160} />
         </div>
 
         <h3 className="font-mono text-2xl font-bold tracking-tight text-text-primary transition-all duration-300 group-hover:text-matrix-green lg:text-3xl">
@@ -77,8 +71,9 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
                 title={item.name}
               >
                 <BrandIcon 
-                  Icon={item.icon} 
+                  icon={item.icon} 
                   color={item.color} 
+                  variant={item.variant}
                   className="group-hover/icon:scale-110" 
                   size="text-xl"
                 />
@@ -98,7 +93,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           className="flex items-center justify-center gap-2 py-4 transition-all hover:bg-matrix-green/5 hover:text-matrix-green"
           title="Project Details"
         >
-          <FiMaximize2 className="text-lg" />
+          <IconMaximize className="text-lg" />
           <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Info</span>
         </Link>
         
@@ -109,7 +104,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           className="flex items-center justify-center gap-2 py-4 transition-all hover:bg-matrix-green/5 hover:text-matrix-green"
           title="GitHub Repository"
         >
-          <FiGithub className="text-lg" />
+          <IconGithub className="text-lg" />
           <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Repo</span>
         </a>
 
@@ -120,7 +115,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           className="flex items-center justify-center gap-2 py-4 text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black"
           title="Live Preview"
         >
-          <FiExternalLink className="text-lg" />
+          <IconExternalLink className="text-lg" />
           <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Live</span>
         </a>
       </div>

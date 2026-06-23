@@ -1,0 +1,101 @@
+[
+  {
+    "id": "stitchlogic",
+    "title": "StitchLogic",
+    "description": "A garment manufacturing and production management platform for tracking orders, production stages, and operational workflows.",
+    "longDescription": "StitchLogic streamlines garment factory operations by centralizing order management, production tracking, inventory monitoring, and workflow coordination into a single platform.",
+    "videoUrl": null,
+    "githubUrl": "https://github.com/samibyte/stitchlogic",
+    "demoUrl": "https://stitchlogic.samibyte.dev",
+    "order": 0,
+    "techStack": [
+      { "name": "React", "icon": "react", "color": "#61DAFB" },
+      { "name": "Node.js", "icon": "nodejs", "color": "#339933" },
+      { "name": "Express", "icon": "express", "color": "#FFFFFF", "variant": "plain" },
+      { "name": "MongoDB", "icon": "mongodb", "color": "#47A248" }
+    ],
+    "problem": "Garment factories often rely on spreadsheets and manual processes, causing inefficiencies, production delays, and poor visibility into ongoing operations.",
+    "solution": "Built a centralized system that tracks production progress, manages orders, and provides real-time visibility across manufacturing workflows.",
+    "challenges": "Designing flexible production pipelines while maintaining accurate status tracking across multiple manufacturing stages.",
+    "learnings": "Gained experience designing workflow-driven applications and managing complex business processes.",
+    "results": [
+      "Improved production visibility.",
+      "Reduced manual record keeping.",
+      "Centralized factory operations."
+    ]
+  },
+  {
+    "id": "syncora",
+    "title": "Syncora",
+    "description": "A collaborative team management and productivity platform with real-time communication and task coordination.",
+    "longDescription": "Syncora helps teams organize projects, manage tasks, collaborate in real time, and maintain workflow transparency through an intuitive dashboard.",
+    "videoUrl": null,
+    "githubUrl": "https://github.com/samibyte/syncora",
+    "demoUrl": "https://syncora.samibyte.dev",
+    "order": 1,
+    "techStack": [
+      { "name": "Next.js", "icon": "nextjs", "color": "#FFFFFF", "variant": "plain" },
+      { "name": "PostgreSQL", "icon": "postgresql", "color": "#4169E1" },
+      { "name": "Prisma", "icon": "prisma", "color": "#FFFFFF", "variant": "plain" },
+      { "name": "Socket.io", "icon": "socketio", "color": "#FFFFFF" }
+    ],
+    "problem": "Teams frequently struggle with fragmented communication and disconnected project management tools.",
+    "solution": "Developed a unified workspace that combines project tracking, team collaboration, and real-time updates.",
+    "challenges": "Maintaining real-time synchronization between users while ensuring data consistency.",
+    "learnings": "Deepened understanding of collaborative software architecture and real-time systems.",
+    "results": [
+      "Improved team coordination.",
+      "Reduced communication gaps.",
+      "Enabled real-time project visibility."
+    ]
+  },
+  {
+    "id": "eduanalytics",
+    "title": "EduAnalytics",
+    "description": "An educational analytics platform that provides insights into student performance and institutional outcomes.",
+    "longDescription": "EduAnalytics transforms educational data into actionable insights through interactive dashboards, performance tracking, and predictive analytics.",
+    "videoUrl": null,
+    "githubUrl": "https://github.com/samibyte/eduanalytics",
+    "demoUrl": "https://edu.samibyte.dev",
+    "order": 2,
+    "techStack": [
+      { "name": "React", "icon": "react", "color": "#61DAFB" },
+      { "name": "Node.js", "icon": "nodejs", "color": "#339933" },
+      { "name": "MongoDB", "icon": "mongodb", "color": "#47A248" },
+      { "name": "Express", "icon": "express", "color": "#FFFFFF", "variant": "plain" }
+    ],
+    "problem": "Educational institutions often have access to large amounts of student data but lack meaningful insights for decision-making.",
+    "solution": "Created a data visualization and analytics platform that highlights performance trends and key educational metrics.",
+    "challenges": "Processing and visualizing large datasets while keeping the interface intuitive for non-technical users.",
+    "learnings": "Learned advanced data visualization techniques and dashboard design principles.",
+    "results": [
+      "Simplified educational reporting.",
+      "Provided actionable performance insights.",
+      "Improved data-driven decision making."
+    ]
+  },
+  {
+    "id": "smart-inventory-system",
+    "title": "Smart Inventory System",
+    "description": "An inventory and stock management solution for businesses to monitor products, suppliers, and stock movement.",
+    "longDescription": "Smart Inventory System helps businesses maintain accurate stock levels, track inventory movement, manage suppliers, and generate operational reports.",
+    "videoUrl": null,
+    "githubUrl": "https://github.com/samibyte/smart-inventory",
+    "demoUrl": "https://inventory.samibyte.dev",
+    "order": 3,
+    "techStack": [
+      { "name": "Next.js", "icon": "nextjs", "color": "#FFFFFF", "variant": "plain" },
+      { "name": "PostgreSQL", "icon": "postgresql", "color": "#4169E1" },
+      { "name": "Prisma", "icon": "prisma", "color": "#FFFFFF", "variant": "plain" }
+    ],
+    "problem": "Manual inventory tracking leads to stock discrepancies, operational inefficiencies, and poor forecasting.",
+    "solution": "Built a digital inventory management platform with automated stock tracking and reporting capabilities.",
+    "challenges": "Ensuring inventory consistency across multiple operations and transactions.",
+    "learnings": "Developed expertise in transactional data management and inventory workflows.",
+    "results": [
+      "Reduced stock tracking errors.",
+      "Improved inventory visibility.",
+      "Streamlined business operations."
+    ]
+  }
+]

@@ -1,14 +1,15 @@
-import { projects } from "@/data/projects";
+import { getProject, getProjects } from "@/lib/projectStore";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectDetailsShell from "./ProjectDetailsShell";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.id === slug);
+  const project = await getProject(slug);
   
   if (!project) return { title: "Project Not Found" };
 
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Generate static params for all projects
 export async function generateStaticParams() {
+  const projects = await getProjects();
   return projects.map((project) => ({
     slug: project.id,
   }));
@@ -32,12 +34,11 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const projectExists = projects.some((p) => p.id === slug);
+  const project = await getProject(slug);
 
-  if (!projectExists) {
+  if (!project) {
     notFound();
   }
 
-  return <ProjectDetailsShell slug={slug} />;
+  return <ProjectDetailsShell project={project} />;
 }
-
