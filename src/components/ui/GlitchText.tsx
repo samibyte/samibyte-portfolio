@@ -52,7 +52,7 @@ const GlitchText = ({ text, className = "", delay = 500 }: GlitchTextProps) => {
   }, [startAnimation, delay]);
 
   return (
-    <h1 className={className} data-value={text}>
+    <h1 className={className} data-value={text} suppressHydrationWarning>
       {displayText}
     </h1>
   );

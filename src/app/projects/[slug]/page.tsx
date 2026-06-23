@@ -1,7 +1,7 @@
-import ProjectDetailsClient from "./ProjectDetailsClient";
 import { projects } from "@/data/projects";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ProjectDetailsShell from "./ProjectDetailsShell";
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -38,6 +38,6 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  return <ProjectDetailsClient slug={slug} />;
+  return <ProjectDetailsShell slug={slug} />;
 }
 
