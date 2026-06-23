@@ -40,8 +40,15 @@ const GlitchText = ({ text, className = "", delay = 500 }: GlitchTextProps) => {
   }, [text, chars]);
 
   useEffect(() => {
-    const timeout = setTimeout(startAnimation, delay);
-    return () => clearTimeout(timeout);
+    let cleanup: (() => void) | undefined;
+    const timeout = setTimeout(() => {
+      cleanup = startAnimation();
+    }, delay);
+    
+    return () => {
+      clearTimeout(timeout);
+      if (cleanup) cleanup();
+    };
   }, [startAnimation, delay]);
 
   return (

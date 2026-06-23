@@ -195,10 +195,14 @@ const StarField = () => {
       lastScroll = currentScroll;
     };
 
+    let resizeTimeout: ReturnType<typeof setTimeout>;
     const onResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 150);
     };
 
     const onVisibility = () => {

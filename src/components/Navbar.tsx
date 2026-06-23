@@ -164,7 +164,7 @@ const Navbar = () => {
               {/* Drawer bottom decoration */}
               <div className="mt-auto pb-8">
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-matrix-green/30 to-transparent" />
-                <p className="mt-4 text-center font-mono text-xs text-text-muted">
+                <p className="mt-4 text-center font-mono text-xs text-text-muted" suppressHydrationWarning>
                   &copy; {new Date().getFullYear()} Sami Adnan
                 </p>
               </div>

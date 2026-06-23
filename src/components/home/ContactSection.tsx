@@ -11,13 +11,25 @@ import {
 import { 
   FaLinkedin, FaTwitter 
 } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const ContactSection = () => {
   const socials = [
     { name: "Github", icon: SiGithub, href: "https://github.com/samibyte", color: "#FFFFFF" },
-    { name: "LinkedIn", icon: FaLinkedin, href: "#", color: "#0A66C2" },
-    { name: "Twitter", icon: FaTwitter, href: "#", color: "#1DA1F2" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/in/samibyte", color: "#0A66C2" },
+    { name: "Twitter", icon: FaTwitter, href: "https://x.com/samibyt3", color: "#1DA1F2" },
   ];
+
+  
+  const [binaryStrings, setBinaryStrings] = useState<string[]>([]);
+    
+  useEffect(() => {
+    // Generate 24 unique binary strings on the client only
+    const strings = Array(24).fill(0).map(() => 
+      Array(200).fill(0).map(() => (Math.random() > 0.5 ? "1" : "0")).join("")
+    );
+    setBinaryStrings(strings);
+  }, []);
 
   return (
     <section className="py-32 relative overflow-hidden">
@@ -119,9 +131,9 @@ const ContactSection = () => {
       
       {/* Background binary rain effect */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none font-mono text-matrix-green text-[10px] overflow-hidden select-none">
-        {Array(24).fill(0).map((_, i) => (
+        {binaryStrings.map((str, i) => (
           <div key={i} className="whitespace-nowrap animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}>
-            {Array(200).fill(0).map(() => (Math.random() > 0.5 ? "1" : "0")).join("")}
+            {str}
           </div>
         ))}
       </div>

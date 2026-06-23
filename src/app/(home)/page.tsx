@@ -1,10 +1,20 @@
-"use client";
-
 import HeroSection from "@/components/home/HeroSection";
 import AboutSection from "@/components/home/AboutSection";
 import SkillsSection from "@/components/home/SkillsSection";
 import ProjectsSection from "@/components/home/ProjectsSection";
 import ContactSection from "@/components/home/ContactSection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sami Adnan | Full-Stack Web Developer",
+  description: "Specializing in building high-performance, immersive web applications with clean code and innovative design.",
+  openGraph: {
+    title: "Sami Adnan | Full-Stack Web Developer",
+    description: "Creative engineering at the intersection of design and code.",
+    type: "website",
+    url: "https://samibyte.dev",
+  },
+};
 
 const Home = () => {
   return (

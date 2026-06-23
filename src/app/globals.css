@@ -172,3 +172,15 @@
     transform: translateY(-6px) translateX(-50%);
   }
 }
+/* === Accessibility focus styles === */
+:focus-visible {
+  outline: 2px solid var(--color-matrix-green);
+  outline-offset: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+}
+
+/* Ensure consistent focus for buttons and links */
+button:focus-visible, 
+a:focus-visible {
+  border-radius: 4px;
+}
