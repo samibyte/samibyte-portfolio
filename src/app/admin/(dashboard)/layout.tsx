@@ -17,7 +17,7 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-space-black text-white">
       {/* Dashboard Brand Header */}
-      <header className="sticky top-0 z-[100] border-b border-matrix-border/20 bg-space-deep/90 backdrop-blur-xl">
+      <header className="sticky top-10 z-[100] border-b border-matrix-border/20 bg-space-deep/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-matrix-green bg-matrix-green/10 font-mono text-xl font-bold text-matrix-green">

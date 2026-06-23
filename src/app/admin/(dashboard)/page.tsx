@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Reorder, motion, AnimatePresence } from "framer-motion";
-import { getProjects } from "@/lib/projectStore";
 import type { Project } from "@/data/projects";
 import ProjectForm from "./ProjectForm";
-import { IconZap, IconMaximize, IconMaximize as IconPlus, IconAlertTriangle } from "@/components/ui/Icons";
+import { IconMaximize as IconPlus, IconAlertTriangle } from "@/components/ui/Icons";
 
 const AdminDashboard = () => {
   const [projects, setProjects] = useState<Project[]>([]);
