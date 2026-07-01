@@ -76,12 +76,12 @@ const StarField = () => {
 
       const isGreen = Math.random() < 0.12;
       if (isGreen) {
-        colors[i3] = 0.15 + Math.random() * 0.2;
-        colors[i3 + 1] = 0.7 + Math.random() * 0.3;
-        colors[i3 + 2] = 0.15 + Math.random() * 0.15;
+        colors[i3] = 0.25 + Math.random() * 0.2;
+        colors[i3 + 1] = 0.85 + Math.random() * 0.15;
+        colors[i3 + 2] = 0.25 + Math.random() * 0.15;
       } else {
-        const brightness = 0.55 + Math.random() * 0.45;
-        const blueShift = Math.random() * 0.18;
+        const brightness = 0.70 + Math.random() * 0.30;
+        const blueShift = Math.random() * 0.15;
         colors[i3] = brightness - blueShift;
         colors[i3 + 1] = brightness;
         colors[i3 + 2] = brightness + blueShift;
@@ -104,8 +104,8 @@ const StarField = () => {
         size / 2, size / 2, size / 2
       );
       gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-      gradient.addColorStop(0.2, "rgba(255, 255, 255, 0.8)");
-      gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.3)");
+      gradient.addColorStop(0.3, "rgba(255, 255, 255, 0.95)");
+      gradient.addColorStop(0.6, "rgba(255, 255, 255, 0.55)");
       gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
       ctx.fillStyle = gradient;
@@ -119,11 +119,11 @@ const StarField = () => {
     const starTexture = generateStarTexture();
 
     const material = new THREE.PointsMaterial({
-      size: 2.2,
+      size: 2,
       map: starTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.9,
+      opacity: 1.0,
       sizeAttenuation: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,

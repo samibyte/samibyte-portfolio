@@ -56,13 +56,13 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
         
         <div className="mt-4 h-0.5 w-12 bg-matrix-green/30" />
 
-        <p className="mt-6 line-clamp-4 flex-1 font-sans text-sm leading-relaxed text-text-secondary md:text-base">
+        <p className="mt-4 line-clamp-3 font-sans text-sm leading-relaxed text-text-secondary md:text-base">
           {description}
         </p>
 
         {/* Tech Stack Footer */}
-        <div className="mt-8 pt-6 border-t border-matrix-border/10">
-          <p className="mb-4 font-mono text-[8px] uppercase tracking-widest text-text-muted">Integrated Systems:</p>
+        <div className="mt-auto pt-4 border-t border-matrix-border/10">
+          <p className="mb-3 font-mono text-[8px] uppercase tracking-widest text-text-muted">Integrated Systems:</p>
           <div className="flex flex-wrap gap-4">
             {tech.map((item) => (
               <div 

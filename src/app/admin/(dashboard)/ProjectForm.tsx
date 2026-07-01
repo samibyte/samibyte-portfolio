@@ -6,6 +6,34 @@ import type { Project, TechItem } from "@/data/projects";
 import { IconX, IconZap, IconCpu, IconAlertTriangle } from "@/components/ui/Icons";
 import BrandIcon from "@/components/ui/BrandIcon";
 
+const STATIC_TECH_LIST = [
+  { name: "React", icon: "react", color: "#61DAFB" },
+  { name: "Next.js", icon: "nextjs", color: "#FFFFFF" },
+  { name: "TypeScript", icon: "typescript", color: "#3178C6" },
+  { name: "JavaScript", icon: "javascript", color: "#F7DF1E" },
+  { name: "HTML5", icon: "html5", color: "#E34F26" },
+  { name: "CSS3", icon: "css3", color: "#1572B6" },
+  { name: "Tailwind CSS", icon: "tailwindcss", color: "#06B6D4" },
+  { name: "GSAP", icon: "greensock", color: "#88CE02" },
+  { name: "Three.js", icon: "threejs", color: "#FFFFFF" },
+  { name: "Node.js", icon: "nodejs", color: "#339933" },
+  { name: "Express", icon: "express", color: "#FFFFFF" },
+  { name: "Python", icon: "python", color: "#3776AB" },
+  { name: "GraphQL", icon: "graphql", color: "#E10098" },
+  { name: "MongoDB", icon: "mongodb", color: "#47A248" },
+  { name: "PostgreSQL", icon: "postgresql", color: "#4169E1" },
+  { name: "Firebase", icon: "firebase", color: "#FFCA28" },
+  { name: "Redis", icon: "redis", color: "#DC382D" },
+  { name: "Git", icon: "git", color: "#F05032" },
+  { name: "GitHub", icon: "github", color: "#FFFFFF" },
+  { name: "Docker", icon: "docker", color: "#2496ED" },
+  { name: "Linux", icon: "linux", color: "#FCC624" },
+  { name: "Figma", icon: "figma", color: "#F24E1E" },
+  { name: "Postman", icon: "postman", color: "#FF6C37" },
+  { name: "Prisma", icon: "prisma", color: "#FFFFFF" },
+  { name: "Socket.io", icon: "socketio", color: "#FFFFFF" },
+];
+
 interface Props {
   project?: Project;
   onClose: () => void;
@@ -13,6 +41,7 @@ interface Props {
 }
 
 const ProjectForm = ({ project, onClose, onSave }: Props) => {
+  const [showTechGrid, setShowTechGrid] = useState(false);
   const [formData, setFormData] = useState<Partial<Project>>(
     project || {
       id: "",
@@ -67,20 +96,7 @@ const ProjectForm = ({ project, onClose, onSave }: Props) => {
     }
   };
 
-  const addTech = () => {
-    const name = prompt("Enter Technology Name (e.g. Next.js)");
-    const icon = prompt("Enter Devicon Slug (e.g. nextjs)");
-    if (name && icon) {
-      const newTech: TechItem = { name, icon };
-      setFormData({ ...formData, tech: [...(formData.tech || []), newTech] });
-    }
-  };
-
-  const removeTech = (index: number) => {
-    const updated = [...(formData.tech || [])];
-    updated.splice(index, 1);
-    setFormData({ ...formData, tech: updated });
-  };
+  // Tech helper functions removed in favor of inline grid events
 
   const addResult = () => {
     if (!newResult) return;
@@ -212,14 +228,67 @@ const ProjectForm = ({ project, onClose, onSave }: Props) => {
               <div className="space-y-4 pt-4">
                 <div className="flex items-center justify-between">
                   <SectionTitle label="Integrated Systems (Tech)" />
-                  <button type="button" onClick={addTech} className="text-[10px] font-bold text-matrix-green hover:underline uppercase tracking-widest">+ Link_System</button>
+                  <button
+                    type="button"
+                    onClick={() => setShowTechGrid(!showTechGrid)}
+                    className="text-[10px] font-bold text-matrix-green hover:underline uppercase tracking-widest"
+                  >
+                    {showTechGrid ? "// Close_System_Grid" : "+ Modify_Systems"}
+                  </button>
                 </div>
+
+                {showTechGrid && (
+                  <div className="max-h-[220px] overflow-y-auto grid grid-cols-2 sm:grid-cols-3 gap-2 rounded-lg border border-matrix-border/20 bg-black/40 p-4 transition-all duration-300">
+                    {STATIC_TECH_LIST.map((tech) => {
+                      const isSelected = (formData.tech || []).some(
+                        (t) => t.icon.toLowerCase() === tech.icon.toLowerCase()
+                      );
+                      return (
+                        <button
+                          key={tech.icon}
+                          type="button"
+                          onClick={() => {
+                            const currentTech = formData.tech || [];
+                            if (isSelected) {
+                              const updated = currentTech.filter(
+                                (t) => t.icon.toLowerCase() !== tech.icon.toLowerCase()
+                              );
+                              setFormData({ ...formData, tech: updated });
+                            } else {
+                              const updated = [...currentTech, { name: tech.name, icon: tech.icon, color: tech.color }];
+                              setFormData({ ...formData, tech: updated });
+                            }
+                          }}
+                          className={`flex items-center gap-2 rounded border px-2 py-1.5 text-left font-mono text-[9px] transition-all duration-200 ${
+                            isSelected
+                              ? "border-matrix-green bg-matrix-green/10 text-matrix-green shadow-[0_0_10px_rgba(0,255,65,0.15)]"
+                              : "border-matrix-border/10 bg-white/5 text-text-secondary hover:border-white/20 hover:bg-white/10"
+                          }`}
+                        >
+                          <BrandIcon icon={tech.icon} size="text-[12px]" />
+                          <span className="truncate">{tech.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
                 <div className="flex flex-wrap gap-2">
-                  {formData.tech?.map((t, i) => (
+                  {(formData.tech || []).map((t, i) => (
                     <div key={i} className="flex items-center gap-2 rounded bg-white/5 border border-matrix-border/20 px-3 py-2 group">
                       <BrandIcon icon={t.icon} size="text-sm" />
                       <span className="font-mono text-[10px] text-text-secondary">{t.name}</span>
-                      <button type="button" onClick={() => removeTech(i)} className="ml-2 text-red-500/50 hover:text-red-500"><IconX size={12} /></button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const updated = [...(formData.tech || [])];
+                          updated.splice(i, 1);
+                          setFormData({ ...formData, tech: updated });
+                        }}
+                        className="ml-2 text-red-500/50 hover:text-red-500"
+                      >
+                        <IconX size={12} />
+                      </button>
                     </div>
                   ))}
                 </div>
