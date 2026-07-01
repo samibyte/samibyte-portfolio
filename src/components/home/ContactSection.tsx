@@ -20,7 +20,10 @@ const ContactSection = () => {
     const strings = Array(24).fill(0).map(() => 
       Array(200).fill(0).map(() => (Math.random() > 0.5 ? "1" : "0")).join("")
     );
-    setBinaryStrings(strings);
+    const timer = setTimeout(() => {
+      setBinaryStrings(strings);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -45,11 +48,11 @@ const ContactSection = () => {
                   <div className="relative h-2 w-2 rounded-full bg-matrix-green" />
                 </div>
                 <span className="font-mono text-[10px] font-bold tracking-[0.3em] text-matrix-green uppercase">
-                  Uplink Status: Active
+                  Status: Available for hire
                 </span>
               </div>
               <span className="hidden sm:block font-mono text-[9px] text-text-muted uppercase tracking-widest">
-                System_ID: ADX-9000
+                Location: Dhaka, Bangladesh
               </span>
             </div>
 
@@ -63,11 +66,11 @@ const ContactSection = () => {
                   transition={{ delay: 0.2 }}
                   className="glow-green mb-6 font-mono text-3xl font-bold tracking-tight text-matrix-green md:text-4xl"
                 >
-                  &gt; CONNECT_NODE
+                  &gt; Get in Touch
                 </motion.h2>
                 
                 <p className="mx-auto lg:mx-0 max-w-xl text-lg leading-relaxed text-text-secondary">
-                  Ready to initiate new collaborative sequences. My bandwidth is currently optimized for innovative digital engineering and high-impact architectures.
+                  I am currently looking for modern frontend or full stack developer roles. Feel free to reach out to discuss how we can work together.
                 </p>
               </div>
 
@@ -79,7 +82,7 @@ const ContactSection = () => {
                 >
                   <div className="relative z-10 flex items-center gap-3 font-mono text-sm font-black tracking-[0.25em] text-space-black uppercase">
                     <IconMail className="text-xl transition-transform group-hover:scale-125" />
-                    Open Transmission
+                    Contact Me
                   </div>
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                 </Link>

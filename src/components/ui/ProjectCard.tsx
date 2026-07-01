@@ -35,7 +35,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
       {/* Dynamic Header */}
       <div className="flex items-center justify-between border-b border-matrix-border/10 bg-white/[0.02] px-6 py-4">
         <span className="font-mono text-[10px] tracking-[0.3em] text-matrix-green/60">
-          {serialNumber} PROJECT_LOG
+          {serialNumber} Project
         </span>
         <div className="flex gap-1.5">
           <div className="h-1.5 w-1.5 rounded-full bg-matrix-green/40 shadow-[0_0_5px_rgba(0,255,65,0.4)]" />
@@ -62,7 +62,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
 
         {/* Tech Stack Footer */}
         <div className="mt-auto pt-4 border-t border-matrix-border/10">
-          <p className="mb-3 font-mono text-[8px] uppercase tracking-widest text-text-muted">Integrated Systems:</p>
+          <p className="mb-3 font-mono text-[8px] uppercase tracking-widest text-text-muted">Technologies:</p>
           <div className="flex flex-wrap gap-4">
             {tech.map((item) => (
               <div 
@@ -94,7 +94,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           title="Project Details"
         >
           <IconMaximize className="text-lg" />
-          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Info</span>
+          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Details</span>
         </Link>
         
         <a 
@@ -105,7 +105,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           title="GitHub Repository"
         >
           <IconGithub className="text-lg" />
-          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Repo</span>
+          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Code</span>
         </a>
 
         <a 
@@ -116,7 +116,7 @@ const ProjectCard = ({ id, title, description, tech, githubUrl, demoUrl, index }
           title="Live Preview"
         >
           <IconExternalLink className="text-lg" />
-          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Live</span>
+          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase">Demo</span>
         </a>
       </div>
 

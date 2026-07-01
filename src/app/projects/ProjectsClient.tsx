@@ -25,7 +25,7 @@ const ProjectsClient = ({ projects }: Props) => {
           className="mb-16"
         >
           <h1 className="glow-green font-mono text-4xl font-bold text-matrix-green md:text-5xl">
-            // Projects
+            Projects
           </h1>
           <div className="mt-4 h-1 w-20 bg-matrix-green/50" />
           <p className="mt-8 max-w-2xl text-lg text-text-secondary md:text-xl">

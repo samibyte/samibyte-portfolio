@@ -31,9 +31,9 @@ const SkillsSection = () => {
             viewport={{ once: true }}
             className="glow-green font-mono text-3xl font-bold text-matrix-green"
           >
-            &lt; TECH_STACK /&gt;
+            &lt; Tech Stack &gt;
           </motion.h2>
-          <p className="mt-4 text-text-secondary text-sm font-sans">Core technologies powering my development pipeline.</p>
+          <p className="mt-4 text-text-secondary text-sm font-sans">Core technologies I use to build web applications.</p>
         </div>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
@@ -51,7 +51,7 @@ const SkillsSection = () => {
         
         <div className="mt-10 text-center">
           <Link href="/skills" className="inline-flex items-center gap-2 rounded-md border border-matrix-green/20 px-6 py-2 font-mono text-[10px] text-matrix-green hover:bg-matrix-green/5 transition-all tracking-widest uppercase font-bold">
-            EXPAND SYSTEM SKILLS <IconArrowNarrowRight size={14} />
+            View All Skills <IconArrowNarrowRight size={14} />
           </Link>
         </div>
       </div>

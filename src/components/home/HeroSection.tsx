@@ -54,7 +54,7 @@ const HeroSection = () => {
               </p>
 
               <GlitchText 
-                text="SAMI ADNAN" 
+                text="ADNAN SAMI" 
                 className="glow-green mb-2 font-mono text-4xl font-extrabold tracking-tighter text-matrix-green sm:text-5xl md:text-6xl lg:text-7xl"
               />
 
@@ -71,8 +71,7 @@ const HeroSection = () => {
                 transition={{ delay: 2.5, duration: 1 }}
                 className="mx-auto lg:mx-0 mb-12 max-w-lg text-lg text-text-secondary md:text-xl px-4 lg:px-0 font-sans"
               >
-                Building the future of the web with clean code and innovative design. 
-                Currently specializing in high-performance Full-Stack ecosystems.
+                I build functional, interactive, and responsive web applications using React, Next.js, TypeScript, and Node.js.
               </motion.p>
 
               <motion.div 
@@ -85,7 +84,7 @@ const HeroSection = () => {
                   href="/projects"
                   className="group relative overflow-hidden rounded-md border border-matrix-green/50 px-8 py-3 font-mono text-sm font-medium tracking-widest text-matrix-green transition-all hover:bg-matrix-green/10 hover:shadow-[0_0_20px_rgba(0,255,65,0.2)]"
                 >
-                  cd Projects
+                  Projects
                 </Link>
 
                 <a 
@@ -94,7 +93,7 @@ const HeroSection = () => {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-2 rounded-md bg-matrix-green px-8 py-3 font-mono text-sm font-bold tracking-widest text-space-black transition-all hover:scale-105 hover:bg-matrix-bright hover:shadow-[0_0_25px_rgba(0,255,65,0.4)]"
                 >
-                  cd Resume
+                  Resume
                   <IconArrowNarrowRight className="transition-transform group-hover:translate-x-1" />
                 </a>
               </motion.div>
@@ -158,7 +157,7 @@ const HeroSection = () => {
 
               {/* Monospace Tech Tag at the bottom of the card */}
               <div className="absolute -bottom-4 right-6 bg-space-black border border-matrix-green/30 px-3 py-0.5 font-mono text-[9px] text-matrix-green/80 uppercase tracking-widest transition-all duration-300 group-hover:text-matrix-bright group-hover:border-matrix-green/60">
-                SYS_OP // SAMI_ADNAN
+                ADNAN_SAMI
               </div>
 
               {/* Dynamic decorative tech numbers */}

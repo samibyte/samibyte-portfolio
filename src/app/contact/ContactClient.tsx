@@ -14,9 +14,9 @@ import {
 const socialLinks = [
   {
     name: "Email",
-    value: "sami@email.com",
+    value: "samibyte.web@gmail.com",
     icon: IconMail,
-    href: "mailto:sami@email.com",
+    href: "mailto:samibyte.web@gmail.com",
     color: "text-matrix-green"
   },
   {
@@ -82,7 +82,7 @@ const ContactClient = () => {
           className="mb-16"
         >
           <h1 className="glow-green font-mono text-4xl font-bold text-matrix-green md:text-5xl">
-            &gt; Let&apos;s Connect
+            &gt; Get in Touch
           </h1>
           <div className="mt-4 h-1 w-20 bg-matrix-green/50" />
           
@@ -153,7 +153,7 @@ const ContactClient = () => {
                 className="group relative w-full overflow-hidden rounded-md bg-matrix-green py-4 font-mono text-sm font-bold tracking-widest text-space-black transition-all hover:bg-matrix-bright hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] disabled:opacity-50"
               >
                 <span className="flex items-center justify-center gap-2">
-                  {isSubmitting ? "TRANSMITTING..." : isSent ? "MESSAGE RECEIVED" : "SEND MESSAGE"}
+                  {isSubmitting ? "SENDING..." : isSent ? "MESSAGE SENT" : "SEND MESSAGE"}
                   {!isSubmitting && !isSent && <IconArrowNarrowRight className="transition-transform group-hover:translate-x-1" />}
                 </span>
               </button>
@@ -164,7 +164,7 @@ const ContactClient = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center font-mono text-xs text-matrix-green"
                 >
-                  Message decrypted and received. I&apos;ll get back to you shortly.
+                  Message sent. I&apos;ll get back to you shortly.
                 </motion.p>
               )}
             </form>
@@ -180,7 +180,7 @@ const ContactClient = () => {
               className="space-y-4"
             >
               <h2 className="mb-8 font-mono text-xl font-bold tracking-widest text-text-muted uppercase">
-                // CONNECT
+                Links
               </h2>
 
               <div className="grid grid-cols-1 gap-4">

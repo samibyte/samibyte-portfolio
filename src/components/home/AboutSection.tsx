@@ -12,10 +12,10 @@ const AboutSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 1 });
   
   const fullJson = `{
-  "name": "Sami Adnan",
+  "name": "Adnan Sami",
   "role": "Full-Stack Developer",
-  "location": "Bangladesh",
-  "passion": "Creative Engineering",
+  "location": "Dhaka, Bangladesh",
+  "focus": "Clean Software Engineering",
   "available": true
 }`;
 
@@ -52,16 +52,16 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="glow-green font-mono text-3xl font-bold text-matrix-green md:text-4xl">
-              &gt; ABOUT_ME.EXE
+              &gt; About Me
             </h2>
             <div className="mt-4 h-1 w-20 bg-matrix-green/50" />
 
             <div className="mt-10 space-y-6 font-sans text-lg leading-relaxed text-text-secondary">
               <p>
-                A passionate <span className="text-matrix-green font-semibold">full-stack developer</span> who loves building things that live on the internet. I thrive at the intersection of clean code and great design.
+                I am a <span className="text-matrix-green font-semibold">full stack developer</span> based in Dhaka, Bangladesh. I write functional, easy-to-use web applications using React, Next.js, and Node.js.
               </p>
               <p>
-                My mission is to craft digital experiences that are not only high-performing but also visually stunning, ensuring every pixel serves a purpose.
+                I focus on writing clean, well-tested code and building reliable backend services that support smooth user interfaces.
               </p>
             </div>
 
@@ -71,7 +71,12 @@ const AboutSection = () => {
               </Link>
               
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="#" className="inline-flex items-center gap-3 rounded-md border border-matrix-green/30 bg-matrix-green/5 px-6 py-2.5 font-mono text-md font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black">
+                <a 
+                  href="https://drive.google.com/file/d/1ie1hDAg067E3UA4QIzTW2S5lDkT-kf93/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 rounded-md border border-matrix-green/30 bg-matrix-green/5 px-6 py-2.5 font-mono text-md font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black"
+                >
                   <IconDownload className="text-sm" />
                   DOWNLOAD CV
                 </a>
@@ -94,7 +99,7 @@ const AboutSection = () => {
                   <div className="h-2 w-2 rounded-full bg-yellow-500/40" />
                   <div className="h-2 w-2 rounded-full bg-green-500/40" />
                 </div>
-                <span className="ml-2 font-mono text-[10px] text-text-muted uppercase tracking-wider">identity_matrix.json</span>
+                <span className="ml-2 font-mono text-[10px] text-text-muted uppercase tracking-wider">profile.json</span>
               </div>
               <div className="p-6 font-mono text-md leading-relaxed whitespace-pre text-matrix-green/90 min-h-[160px]">
                 {typedJson}
@@ -104,9 +109,9 @@ const AboutSection = () => {
 
             <div className="grid grid-cols-3 gap-4">
               {[
-                { label: "Exp", value: "2+" },
-                { label: "Done", value: "10+" },
-                { label: "Fuel", value: "∞" },
+                { label: "Years", value: "2+" },
+                { label: "Projects", value: "10+" },
+                { label: "Motivation", value: "∞" },
               ].map((stat, i) => (
                 <div key={stat.label} className="rounded-lg border border-matrix-border/30 bg-white/[0.02] p-4 text-center backdrop-blur-sm">
                   <h3 className="glow-green font-mono text-xl font-bold text-matrix-green">

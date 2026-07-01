@@ -27,6 +27,16 @@ import {
   SiPostman,
   SiPrisma,
   SiSocketdotio,
+  SiRedux,
+  SiFramer,
+  SiShadcnui,
+  SiMysql,
+  SiVercel,
+  SiGithubactions,
+  SiWordpress,
+  SiZod,
+  SiJsonwebtokens,
+  SiVscodium,
 } from "react-icons/si";
 import { IconCpu } from "@/components/ui/Icons";
 
@@ -40,6 +50,7 @@ interface BrandIconProps {
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   react: SiReact,
+  reactjs: SiReact,
   nextjs: SiNextdotjs,
   nextdotjs: SiNextdotjs,
   "next.js": SiNextdotjs,
@@ -83,6 +94,21 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
   socketio: SiSocketdotio,
   "socket.io": SiSocketdotio,
   socketdotio: SiSocketdotio,
+  redux: SiRedux,
+  reduxtoolkit: SiRedux,
+  framer: SiFramer,
+  framermotion: SiFramer,
+  shadcn: SiShadcnui,
+  shadcnui: SiShadcnui,
+  mysql: SiMysql,
+  vercel: SiVercel,
+  gitactions: SiGithubactions,
+  githubactions: SiGithubactions,
+  wordpress: SiWordpress,
+  zod: SiZod,
+  jwt: SiJsonwebtokens,
+  vscode: SiVscodium,
+  vscodium: SiVscodium,
 };
 
 const BrandIcon = ({ icon, color, className = "", size = "text-xl" }: BrandIconProps) => {
