@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { 
   IconMail, 
   IconArrowNarrowRight, 
@@ -10,6 +11,10 @@ import {
   IconLinkedin,
   IconTwitter,
 } from "@/components/ui/Icons";
+
+const SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+const PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 const socialLinks = [
   {
@@ -50,21 +55,34 @@ const ContactClient = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Mock submission delay
-    setTimeout(() => {
-      console.log("Form Submitted:", formState);
-      setIsSubmitting(false);
+    setError(null);
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formState.name,
+          from_email: formState.email,
+          message: formState.message,
+        },
+        PUBLIC_KEY
+      );
+
       setIsSent(true);
       setFormState({ name: "", email: "", message: "" });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSent(false), 5000);
-    }, 1500);
+      setTimeout(() => setIsSent(false), 6000);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setError("Something went wrong. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -165,6 +183,16 @@ const ContactClient = () => {
                   className="text-center font-mono text-xs text-matrix-green"
                 >
                   Message sent. I&apos;ll get back to you shortly.
+                </motion.p>
+              )}
+
+              {error && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center font-mono text-xs text-red-400"
+                >
+                  {error}
                 </motion.p>
               )}
             </form>
