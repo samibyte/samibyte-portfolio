@@ -230,7 +230,7 @@ const AboutClient = () => {
                   className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
                     hoveredLayer === "client" 
                       ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                   }`}
                 >
                   <div className="flex justify-between items-center text-[10px]">
@@ -242,8 +242,8 @@ const AboutClient = () => {
 
                 {/* Connector */}
                 <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
                   {hoveredLayer === "client" && (
                     <motion.div 
                       animate={{ y: [0, 8, 0] }}
@@ -259,7 +259,7 @@ const AboutClient = () => {
                   className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
                     hoveredLayer === "gateway" 
                       ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                   }`}
                 >
                   <div className="flex justify-between items-center text-[10px]">
@@ -271,8 +271,8 @@ const AboutClient = () => {
 
                 {/* Connector */}
                 <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
                   {hoveredLayer === "gateway" && (
                     <motion.div 
                       animate={{ y: [0, 8, 0] }}
@@ -288,7 +288,7 @@ const AboutClient = () => {
                   className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
                     hoveredLayer === "engine" 
                       ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                   }`}
                 >
                   <div className="flex justify-between items-center text-[10px]">
@@ -300,8 +300,8 @@ const AboutClient = () => {
 
                 {/* Connector */}
                 <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
-                  <span className="h-1.5 w-[1px] bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
+                  <span className="h-1.5 w-px bg-matrix-green/30" />
                   {hoveredLayer === "engine" && (
                     <motion.div 
                       animate={{ y: [0, 8, 0] }}
@@ -317,7 +317,7 @@ const AboutClient = () => {
                   className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
                     hoveredLayer === "datastore" 
                       ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                   }`}
                 >
                   <div className="flex justify-between items-center text-[10px]">
@@ -329,20 +329,20 @@ const AboutClient = () => {
 
                 {/* Desktop sidebar DevOps block */}
                 <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-1">
-                  <span className="h-6 w-[1px] bg-matrix-green/30" />
+                  <span className="h-6 w-px bg-matrix-green/30" />
                   <button
                     onMouseEnter={() => setHoveredLayer("containment")}
                     className={`w-[110px] px-2 py-3 rounded-lg border font-mono text-center transition-all duration-300 relative group text-[10px] ${
                       hoveredLayer === "containment"
                         ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                        : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                        : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                     }`}
                   >
                     <div className="font-bold text-matrix-green text-[8px] mb-1">DEVOPS</div>
                     <div className="font-bold text-text-primary uppercase leading-tight">Tools &</div>
                     <div className="text-[7px] text-text-muted uppercase mt-0.5">Deployment</div>
                   </button>
-                  <span className="h-6 w-[1px] bg-matrix-green/30" />
+                  <span className="h-6 w-px bg-matrix-green/30" />
                 </div>
               </div>
 
@@ -353,7 +353,7 @@ const AboutClient = () => {
                   className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative ${
                     hoveredLayer === "containment"
                       ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/[0.02] border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
+                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
                   }`}
                 >
                   <div className="flex justify-between items-center text-[10px]">
@@ -425,7 +425,7 @@ const AboutClient = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                  className="rounded-lg border border-matrix-border/30 bg-white/[0.02] p-4 text-center backdrop-blur-sm transition-all hover:bg-matrix-green/5 hover:border-matrix-green/60"
+                  className="rounded-lg border border-matrix-border/30 bg-white/2 p-4 text-center backdrop-blur-sm transition-all hover:bg-matrix-green/5 hover:border-matrix-green/60"
                 >
                   <h3 className="glow-green font-mono text-2xl font-bold text-matrix-green">
                     <Counter value={stat.value} />
@@ -489,7 +489,7 @@ const AboutClient = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="glass-card border border-matrix-border bg-white/[0.01] p-6 rounded-xl relative hover:bg-matrix-green/[0.02] hover:border-matrix-green/60 transition-all duration-300 group"
+                className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl relative hover:bg-matrix-green/2 hover:border-matrix-green/60 transition-all duration-300 group"
               >
                 <div className="absolute top-4 right-4 opacity-30 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300">
                   {item.icon}
@@ -528,13 +528,13 @@ const AboutClient = () => {
                 className="relative group space-y-3"
               >
                 {/* Timeline Marker */}
-                <div className="absolute -left-[30px] md:-left-[38px] top-1.5 h-4 w-4 rounded-full border border-matrix-green bg-space-black transition-all group-hover:bg-matrix-green group-hover:shadow-[0_0_10px_rgba(0,255,65,0.8)]" />
+                <div className="absolute left-[-30px] md:left-[-38px] top-1.5 h-4 w-4 rounded-full border border-matrix-green bg-space-black transition-all group-hover:bg-matrix-green group-hover:shadow-[0_0_10px_rgba(0,255,65,0.8)]" />
                 
                 <span className="font-mono text-xs font-bold text-matrix-green/75 tracking-wider bg-matrix-green/5 border border-matrix-green/20 px-3 py-1 rounded">
                   {event.year}
                 </span>
 
-                <div className="glass-card border border-matrix-border bg-white/[0.01] p-6 rounded-xl hover:bg-matrix-green/[0.015] hover:border-matrix-green/40 transition-all duration-300">
+                <div className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl hover:bg-matrix-green/1.5 hover:border-matrix-green/40 transition-all duration-300">
                   <h3 className="font-mono text-lg font-bold text-text-primary group-hover:text-matrix-green transition-colors duration-300">
                     {event.title}
                   </h3>

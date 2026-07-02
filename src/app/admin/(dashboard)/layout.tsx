@@ -17,7 +17,7 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-space-black text-white">
       {/* Dashboard Brand Header */}
-      <header className="sticky top-10 z-[100] border-b border-matrix-border/20 bg-space-deep/90 backdrop-blur-xl">
+      <header className="sticky top-10 z-100 border-b border-matrix-border/20 bg-space-deep/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-matrix-green bg-matrix-green/10 font-mono text-xl font-bold text-matrix-green">
@@ -35,9 +35,9 @@ export default async function AdminLayout({
 
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex items-center gap-6">
-              <a href="/" className="font-mono text-[10px] uppercase tracking-widest text-text-muted hover:text-white transition-colors">
+              <Link href="/" className="font-mono text-[10px] uppercase tracking-widest text-text-muted hover:text-white transition-colors">
                 Public Site
-              </a>
+              </Link>
             </nav>
             <div className="h-4 w-px bg-white/10" />
             <AdminLogoutButton />
@@ -60,4 +60,5 @@ export default async function AdminLayout({
 
 // Client component for logout logic
 import { IconX } from "@/components/ui/Icons";
-import AdminLogoutButton from "./AdminLogoutButton";
+import AdminLogoutButton from "./AdminLogoutButton";import Link from "next/link";
+
