@@ -125,7 +125,7 @@ const softSkills = [
 
 const SkillsClient = () => {
   return (
-    <div className="relative min-h-screen pt-32 pb-24 bg-space-black">
+    <div className="relative min-h-screen pt-32 pb-24">
       {/* Background Decorative Element */}
       <div className="pointer-events-none absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-matrix-green/20 blur-[120px]" />

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IconArrowNarrowRight } from "@/components/ui/Icons";
+import { IconArrowNarrowRight, IconGithub, IconLinkedin, IconTwitter } from "@/components/ui/Icons";
 import Link from "next/link";
 import GlitchText from "@/components/ui/GlitchText";
 
@@ -54,7 +54,7 @@ const HeroSection = () => {
               </p>
 
               <GlitchText 
-                text="ADNAN SAMI" 
+                text="SAMI ADNAN" 
                 className="glow-green mb-2 font-mono text-4xl font-extrabold tracking-tighter text-matrix-green sm:text-5xl md:text-6xl lg:text-7xl"
               />
 
@@ -71,7 +71,7 @@ const HeroSection = () => {
                 transition={{ delay: 2.5, duration: 1 }}
                 className="mx-auto lg:mx-0 mb-12 max-w-lg text-lg text-text-secondary md:text-xl px-4 lg:px-0 font-sans"
               >
-                I build functional, interactive, and responsive web applications using React, Next.js, TypeScript, and Node.js.
+                I build full-stack applications with modern tools and thoughtful engineering practices, focusing on performance, maintainability, and user experience.
               </motion.p>
 
               <motion.div 
@@ -96,6 +96,46 @@ const HeroSection = () => {
                   Resume
                   <IconArrowNarrowRight className="transition-transform group-hover:translate-x-1" />
                 </a>
+              </motion.div>
+
+              {/* Social Links */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3.1, duration: 0.8 }}
+                className="mt-8 flex items-center justify-center lg:justify-start gap-4"
+              >
+                <div className="h-px w-8 bg-matrix-green/20 hidden sm:block" />
+                <span className="font-mono text-[10px] tracking-[0.2em] text-text-muted uppercase">CONNECT</span>
+                <div className="flex items-center gap-3">
+                  <a 
+                    href="https://github.com/samibyte"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center justify-center w-10 h-10 rounded border border-matrix-green/25 bg-space-deep/40 text-text-secondary transition-all duration-300 hover:border-matrix-green hover:text-matrix-green hover:bg-matrix-green/10 hover:scale-105 hover:shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+                    aria-label="GitHub"
+                  >
+                    <IconGithub size={18} />
+                  </a>
+                  <a 
+                    href="https://www.linkedin.com/in/samibyte"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center justify-center w-10 h-10 rounded border border-matrix-green/25 bg-space-deep/40 text-text-secondary transition-all duration-300 hover:border-matrix-green hover:text-matrix-green hover:bg-matrix-green/10 hover:scale-105 hover:shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+                    aria-label="LinkedIn"
+                  >
+                    <IconLinkedin size={18} />
+                  </a>
+                  <a 
+                    href="https://x.com/samibyt3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center justify-center w-10 h-10 rounded border border-matrix-green/25 bg-space-deep/40 text-text-secondary transition-all duration-300 hover:border-matrix-green hover:text-matrix-green hover:bg-matrix-green/10 hover:scale-105 hover:shadow-[0_0_15px_rgba(0,255,65,0.2)]"
+                    aria-label="Twitter"
+                  >
+                    <IconTwitter size={18} />
+                  </a>
+                </div>
               </motion.div>
             </motion.div>
           </div>
@@ -157,7 +197,7 @@ const HeroSection = () => {
 
               {/* Monospace Tech Tag at the bottom of the card */}
               <div className="absolute -bottom-4 right-6 bg-space-black border border-matrix-green/30 px-3 py-0.5 font-mono text-[9px] text-matrix-green/80 uppercase tracking-widest transition-all duration-300 group-hover:text-matrix-bright group-hover:border-matrix-green/60">
-                ADNAN_SAMI
+                SAMI_ADNAN
               </div>
 
               {/* Dynamic decorative tech numbers */}

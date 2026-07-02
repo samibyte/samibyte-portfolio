@@ -418,7 +418,7 @@ const ProjectForm = ({ project, onClose, onSave }: Props) => {
 
 const SectionTitle = ({ label }: { label: string }) => (
   <h3 className="font-mono text-[10px] font-bold tracking-[0.3em] text-matrix-green/60 uppercase">
-    // {label}
+    {"// " + label}
   </h3>
 );
 

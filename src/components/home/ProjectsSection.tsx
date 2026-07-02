@@ -4,6 +4,7 @@ import { IconArrowNarrowRight } from "@/components/ui/Icons";
 import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
 import type { Project } from "@/data/projects";
+import SectionHeader from "../ui/SectionHeader";
 
 interface ProjectsSectionProps {
   projects: Project[];
@@ -19,7 +20,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
       <div className="section-container relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
           <div>
-            <h2 className="glow-green font-mono text-3xl font-bold text-matrix-green uppercase">Featured Projects</h2>
+            <SectionHeader title="Featured Projects" />
             <p className="mt-4 text-text-secondary text-sm max-w-xl font-sans">A selection of web applications and projects I have built.</p>
           </div>
           <Link href="/projects" className="flex items-center gap-2 font-mono text-xs font-bold text-matrix-green hover:underline tracking-widest uppercase">

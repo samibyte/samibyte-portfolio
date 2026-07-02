@@ -1,198 +1,279 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { IconDownload, IconCpu, IconZap, IconTarget, IconArrowNarrowRight } from "@/components/ui/Icons";
-import Counter from "@/components/ui/Counter";
+import { motion } from "framer-motion";
+import { IconDownload, IconCpu, IconZap, IconTarget, IconArrowNarrowRight, IconAward } from "@/components/ui/Icons";
 import GlitchText from "@/components/ui/GlitchText";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-// Type definitions for the blueprint layers
-type BlueprintLayerId = "client" | "gateway" | "engine" | "datastore" | "containment";
-
-interface BlueprintLayerData {
-  id: BlueprintLayerId;
-  name: string;
-  shortName: string;
-  technologies: string[];
-  specs: {
-    latency: string;
-    typeSafety: string;
-    caching: string;
-    details: string;
-  };
+// ─── Custom SVG Icons ────────────────────────────────────────
+function IconBook({ className = "", size = 24 }: { className?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <line x1="9" y1="7" x2="15" y2="7" />
+      <line x1="9" y1="11" x2="15" y2="11" />
+    </svg>
+  );
 }
 
-const AboutClient = () => {
-  const [hoveredLayer, setHoveredLayer] = useState<BlueprintLayerId>("client");
-
-  const blueprintLayers: BlueprintLayerData[] = [
-    {
-      id: "client",
-      name: "FRONTEND",
-      shortName: "FRONTEND",
-      technologies: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      specs: {
-        latency: "Server-side & Static Rendering",
-        typeSafety: "TypeScript Strict Mode",
-        caching: "CDN & Client State",
-        details: "Building responsive, interactive user interfaces with React and Next.js. Focused on clean layouts, smooth animations, and fast page loads."
-      }
-    },
-    {
-      id: "gateway",
-      name: "API LAYER",
-      shortName: "API",
-      technologies: ["REST APIs", "GraphQL", "JWT Auth", "Zod Validation"],
-      specs: {
-        latency: "Edge & Serverless Functions",
-        typeSafety: "Input Validation (Zod)",
-        caching: "Conditional Revalidation",
-        details: "Handling API routes, validating request data, managing authentication, and connecting the frontend to backend services."
-      }
-    },
-    {
-      id: "engine",
-      name: "BACKEND",
-      shortName: "SERVER",
-      technologies: ["Node.js", "Express.js", "Prisma ORM", "Python"],
-      specs: {
-        latency: "Serverless & Traditional",
-        typeSafety: "ORM Type Integration",
-        caching: "Server-side Caching",
-        details: "Processing business logic, running database queries, handling file operations, and managing server-side functionality with Node.js and Express."
-      }
-    },
-    {
-      id: "datastore",
-      name: "DATABASE",
-      shortName: "DATABASE",
-      technologies: ["PostgreSQL", "MongoDB", "Firebase", "Redis"],
-      specs: {
-        latency: "Connection Pooling",
-        typeSafety: "Schema Enforcement",
-        caching: "In-memory Caching",
-        details: "Storing and managing application data with relational and document databases. Designing schemas, writing efficient queries, and optimizing read/write performance."
-      }
-    },
-    {
-      id: "containment",
-      name: "DEVOPS & TOOLS",
-      shortName: "DEVOPS",
-      technologies: ["Docker", "Git & GitHub Actions", "Linux", "Postman"],
-      specs: {
-        latency: "Automated Pipelines",
-        typeSafety: "Isolated Environments",
-        caching: "Build Cache",
-        details: "Containerizing applications with Docker, automating builds and deployments with CI/CD, managing version control, and testing APIs."
-      }
-    }
-  ];
-
-  const currentStats = blueprintLayers.find(layer => layer.id === hoveredLayer) || blueprintLayers[0];
-
-  const timelineEvents = [
-    {
-      year: "MAY 2026 - PRESENT",
-      title: "Next Level Software Engineering",
-      subtitle: "Programming Hero",
-      desc: "Advanced software engineering course covering system design, clean architecture, and production-level development practices.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Docker"]
-    },
-    {
-      year: "DEC 2025 - FEB 2026",
-      title: "Frontend Developer — Softvence Agency",
-      subtitle: "Full-Time, On-site",
-      desc: "Built and maintained responsive web applications using React, Next.js, and TypeScript. Created reusable UI components with Tailwind CSS. Integrated REST APIs and authentication features. Worked directly with clients to gather requirements and deliver solutions.",
-      tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "WordPress"]
-    },
-    {
-      year: "JUL 2025 - JAN 2026",
-      title: "Complete Web Development",
-      subtitle: "Programming Hero",
-      desc: "Comprehensive web development training covering frontend and backend technologies, database management, authentication systems, and deployment workflows.",
-      tech: ["JavaScript", "React", "Node.js", "MongoDB", "Express"]
-    }
-  ];
-
-  const corePhilosophy = [
-    {
-      icon: <IconCpu className="text-matrix-green" size={28} />,
-      title: "Clean & Maintainable Code",
-      desc: "Writing well-structured, typed code that is easy to read and update. Using TypeScript and clear patterns to keep projects organized as they grow."
-    },
-    {
-      icon: <IconZap className="text-matrix-green" size={28} />,
-      title: "Fast Performance",
-      desc: "Optimizing load times, keeping bundle sizes small, and using server-side rendering to deliver fast, responsive user experiences."
-    },
-    {
-      icon: <IconTarget className="text-matrix-green" size={28} />,
-      title: "Design That Works",
-      desc: "Creating polished interfaces where every animation and layout choice serves the user. Good design should make things easier to use, not harder."
-    }
-  ];
-
-  const diagnosticBars = [
-    { label: "Frontend (React, Next.js, TypeScript)", percentage: 92, blocks: "██████████████████░░░" },
-    { label: "Backend (Node.js, Express, PostgreSQL)", percentage: 85, blocks: "████████████████░░░░░" },
-    { label: "Tools & DevOps (Docker, Git, CI/CD)", percentage: 76, blocks: "██████████████░░░░░░░" }
-  ];
-
+function IconChess({ className = "", size = 24 }: { className?: string; size?: number }) {
   return (
-    <div className="relative min-h-screen pt-32 pb-24 overflow-hidden bg-space-black">
+    <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="18" width="18" height="3" rx="1" />
+      <rect x="7" y="15" width="10" height="3" rx="0.5" />
+      <path d="M9 15V9m6 6V9" />
+      <path d="M7 9h10" />
+      <path d="M9 9V7a3 3 0 0 1 6 0v2" />
+      <circle cx="12" cy="5" r="1.5" />
+    </svg>
+  );
+}
+
+function IconController({ className = "", size = 24 }: { className?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <line x1="6" y1="12" x2="10" y2="12" />
+      <line x1="8" y1="10" x2="8" y2="14" />
+      <circle cx="15" cy="11" r="1" fill="currentColor" stroke="none" />
+      <circle cx="17" cy="13" r="1" fill="currentColor" stroke="none" />
+      <rect x="2" y="8" width="20" height="10" rx="4" />
+    </svg>
+  );
+}
+
+function IconBrain({ className = "", size = 24 }: { className?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.44-4.66z" />
+      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.44-4.66z" />
+    </svg>
+  );
+}
+
+// ─── Data ────────────────────────────────────────────────────
+
+const cognitiveTraits = [
+  { label: "System Depth", value: 94, desc: "Prefers understanding how things work at the root level" },
+  { label: "Precision Quotient", value: 91, desc: "Precision over speed — methodical over reactive" },
+  { label: "Disciplined Learning", value: 88, desc: "Consistent, long-term investment in skill development" },
+  { label: "Analytical Clarity", value: 90, desc: "Evidence-driven decisions, no assumptions without data" },
+];
+
+const journeyEvents = [
+  {
+    year: "MAY 2026 — PRESENT",
+    title: "Next Level Software Engineering",
+    subtitle: "Programming Hero · Advanced Program",
+    desc: "Studying system design, clean architecture, and production-grade engineering. The focus is on building maintainable systems that scale — not just features that ship.",
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Docker"],
+    type: "learning",
+    credential: null
+  },
+  {
+    year: "DEC 2025 — FEB 2026",
+    title: "Frontend Developer — Softvence Agency",
+    subtitle: "Full-Time · On-site",
+    desc: "Built and maintained client-facing web applications. Worked on UI components, API integration, and authentication flows. Operated in a structured environment where requirements were defined, deadlines were firm, and code quality was non-negotiable.",
+    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "WordPress"],
+    type: "work",
+    credential: null
+  },
+  {
+    year: "JUL 2025 — JAN 2026",
+    title: "Complete Web Development",
+    subtitle: "Programming Hero · Foundation Program",
+    desc: "Covered the full stack: frontend fundamentals, server-side logic, database modeling, auth systems, and deployment pipelines. The program was structured — exactly how learning should be.",
+    tech: ["JavaScript", "React", "Node.js", "MongoDB", "Express"],
+    type: "learning",
+    credential: "https://drive.google.com/file/d/1DbQea4pUBkOFazffpep1QpmKz7YLgTRE/view"
+  },
+  {
+    year: "2023 — JUL 2025",
+    title: "Self-Directed Study",
+    subtitle: "Independent",
+    desc: "Started with the fundamentals out of curiosity. Learned HTML, CSS, and JavaScript — building small projects to understand how things actually worked rather than just following tutorials.",
+    tech: ["HTML", "CSS", "JavaScript", "Git"],
+    type: "learning",
+    credential: null
+  }
+];
+
+const workEnjoyedItems = [
+  {
+    icon: <IconCpu className="text-matrix-green" size={26} />,
+    title: "Type-Safe Architecture",
+    desc: "Designing systems where TypeScript strict mode, schema validation (Zod), and strict API contracts eliminate entire categories of bugs before they exist."
+  },
+  {
+    icon: <IconTarget className="text-matrix-green" size={26} />,
+    title: "Database-First Thinking",
+    desc: "Building normalized schemas and modeling data relationships carefully before writing application logic. The schema is the contract — everything else follows."
+  },
+  {
+    icon: <IconZap className="text-matrix-green" size={26} />,
+    title: "Performance Engineering",
+    desc: "Finding the real bottleneck. Not guessing — profiling, measuring, then optimizing server response, client bundle, and query execution with targeted precision."
+  },
+  {
+    icon: <IconBrain className="text-matrix-green" size={26} />,
+    title: "Deep-System Investigation",
+    desc: "Debugging at the protocol and infrastructure layer, not just the application surface. Understanding root causes so the fix solves the problem — not just the symptom."
+  },
+  {
+    icon: <IconAward className="text-matrix-green" size={26} />,
+    title: "Long-Horizon Projects",
+    desc: "Preferring work that has meaningful depth over the sprint-then-forget cycle. Refactoring, documentation, and architectural clarity matter long after the first deploy."
+  },
+  {
+    icon: <IconArrowNarrowRight className="text-matrix-green" size={26} />,
+    title: "Clean Codebase Ownership",
+    desc: "Treating codebases as living systems that require discipline: consistent naming, separation of concerns, and no shortcuts that become next month's technical debt."
+  },
+];
+
+const hobbies = [
+  {
+    icon: <IconChess size={36} className="text-matrix-green" />,
+    title: "Chess",
+    tag: "STRATEGY · PATIENCE",
+    desc: "Not about memorizing openings — about evaluating positions, calculating consequences, and making the most precise move under uncertainty. The game rewards the same traits as good software: patience and forethought.",
+    color: "from-matrix-green/10 to-transparent",
+    border: "border-matrix-green/30",
+  },
+  {
+    icon: <IconBook size={36} className="text-cyan-400" />,
+    title: "Books",
+    tag: "NON-FICTION · SYSTEMS THINKING",
+    desc: "Mostly non-fiction, technical writing, and history. Reading is how I build mental models for complex systems — the same way I approach a new codebase. Slow, deliberate, structural.",
+    color: "from-cyan-500/10 to-transparent",
+    border: "border-cyan-500/30",
+  },
+  {
+    icon: <IconController size={36} className="text-purple-400" />,
+    title: "Gaming",
+    tag: "STRATEGY · SIMULATION",
+    desc: "Strategy and simulation games. The kind with systems to analyze, resources to manage, and long-term trade-offs to think through. Not a hobby for relaxation — a different kind of problem-solving.",
+    color: "from-purple-500/10 to-transparent",
+    border: "border-purple-500/30",
+  },
+];
+
+// ─── Sub-components ────────────────────────────────────────────
+
+function AboutSectionHeader({ label, title, desc }: { label: string; title: string; desc?: string }) {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <span className="h-2 w-2 rounded-full bg-matrix-green animate-pulse" />
+        <span className="font-mono text-xs text-matrix-green uppercase tracking-[0.3em]">{label}</span>
+      </div>
+      <h2 className="glow-green font-mono text-2xl font-bold text-matrix-green md:text-3xl">
+        &gt; {title}
+      </h2>
+      <div className="h-px w-20 bg-matrix-green/50" />
+      {desc && <p className="text-sm text-text-secondary max-w-xl mt-2">{desc}</p>}
+    </div>
+  );
+}
+
+function TraitBar({ label, value, desc, index }: { label: string; value: number; desc: string; index: number }) {
+  const filled = Math.round(value / 5);
+  const empty = 20 - filled;
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      className="space-y-1.5"
+    >
+      <div className="flex items-center justify-between font-mono text-xs">
+        <span className="text-text-secondary uppercase tracking-wider">{label}</span>
+        <span className="text-matrix-green font-bold">{value}%</span>
+      </div>
+      <div className="flex items-center gap-2 font-mono text-[11px]">
+        <span className="text-matrix-green/40 select-none">[</span>
+        <span className="text-matrix-green tracking-tighter select-none">{"█".repeat(filled)}</span>
+        <span className="text-matrix-green/20 tracking-tighter select-none">{"░".repeat(empty)}</span>
+        <span className="text-matrix-green/40 select-none">]</span>
+      </div>
+      <p className="font-sans text-[11px] text-text-muted leading-relaxed">{desc}</p>
+    </motion.div>
+  );
+}
+
+// ─── Main Component ────────────────────────────────────────────
+
+const AboutClient = () => {
+  return (
+    <div className="relative min-h-screen pt-32 pb-24 overflow-hidden">
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-[15%] right-[5%] h-[500px] w-[500px] rounded-full bg-matrix-green/5 blur-[120px]" />
-        <div className="absolute bottom-[20%] left-[-5%] h-[600px] w-[600px] rounded-full bg-matrix-green/5 blur-[150px]" />
-        <div 
-          className="absolute inset-0 opacity-[0.02]" 
+        <div className="absolute top-[10%] right-[5%] h-[500px] w-[500px] rounded-full bg-matrix-green/5 blur-[130px]" />
+        <div className="absolute bottom-[20%] left-[-5%] h-[600px] w-[600px] rounded-full bg-matrix-green/4 blur-[160px]" />
+        <div
+          className="absolute inset-0 opacity-[0.018]"
           style={{
             backgroundImage: `linear-gradient(var(--color-matrix-green) 1px, transparent 1px), linear-gradient(90deg, var(--color-matrix-green) 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
+            backgroundSize: "40px 40px",
           }}
         />
       </div>
 
-      <div className="page-container relative z-10 space-y-24">
-        
-        {/* Section 1: Bio + System Architecture */}
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
-          {/* Bio Column */}
+      <div className="page-container relative z-10 space-y-28">
+
+        {/* ── SECTION 1: Bio + Cognitive Analysis ──────────────── */}
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 items-start">
+
+          {/* Left: Bio */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-6"
+            className="lg:col-span-6 space-y-8"
           >
-            <div className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-matrix-green animate-pulse" />
-              <span className="font-mono text-xs text-matrix-green uppercase tracking-[0.3em]">PROFILE</span>
+            <div className="space-y-3">
+                <SectionHeader title="About Me" />
             </div>
-            
-            <GlitchText 
-              text="ABOUT ME" 
-              className="glow-green font-mono text-3xl font-extrabold text-matrix-green md:text-5xl"
-            />
-            <div className="h-1 w-24 bg-matrix-green/50" />
 
-            <div className="space-y-6 font-sans text-[17px] leading-relaxed text-text-secondary">
+            <div className="space-y-5 font-sans text-[16.5px] leading-relaxed text-text-secondary">
               <p>
-                Hi, I&apos;m <span className="text-matrix-green font-semibold">Adnan Sami</span> — a full stack developer based in Dhaka, Bangladesh. I go by <span className="text-matrix-green font-mono">samibyte</span> online.
+                Hi, I&apos;m <span className="text-matrix-green font-semibold">Adnan Sami</span> — a full-stack developer from Dhaka, Bangladesh. I go by <span className="font-mono text-matrix-green">samibyte</span> online.
               </p>
               <p>
-                I build web applications using React, Next.js, TypeScript, and Node.js. I focus on creating responsive interfaces, building secure backend systems, and delivering production-ready solutions.
+                I started with HTML and CSS out of curiosity, built small things to understand how they worked, and kept going. What I found appealing wasn&apos;t just building — it was figuring out <em>why</em> something worked, or didn&apos;t.
               </p>
               <p>
-                Currently advancing my skills in software engineering, exploring system design, clean architecture, and modern deployment workflows.
+                I work with React, Next.js, TypeScript, and Node.js on the full stack. I care about type safety, schema integrity, and code that&apos;s readable six months from now by someone who isn&apos;t me.
+              </p>
+              <p>
+                My approach to engineering is methodical — I gather information before decisions, prefer precision over speed, and invest in understanding systems deeply rather than treating them as black boxes.
               </p>
             </div>
 
-            <motion.div 
-              className="pt-4"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <a 
+            {/* Stats strip */}
+            <div className="grid grid-cols-3 gap-4 pt-2">
+              {[
+                { label: "Years Learning", value: "3+" },
+                { label: "Projects Shipped", value: "10+" },
+                { label: "Focus", value: "∞" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+                  className="rounded-lg border border-matrix-border/30 bg-white/2 p-4 text-center hover:border-matrix-green/40 hover:bg-matrix-green/5 transition-all duration-300"
+                >
+                  <div className="glow-green font-mono text-2xl font-bold text-matrix-green">{stat.value}</div>
+                  <div className="mt-1 font-mono text-[9px] uppercase tracking-widest text-text-muted">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <a
                 href="https://drive.google.com/file/d/1ie1hDAg067E3UA4QIzTW2S5lDkT-kf93/view"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -204,297 +285,180 @@ const AboutClient = () => {
             </motion.div>
           </motion.div>
 
-          {/* Interactive System Architecture Diagram */}
-          <div className="lg:col-span-6 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="glass-card overflow-hidden rounded-xl border border-matrix-border bg-space-deep shadow-2xl relative p-5"
-            >
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-matrix-border/20 pb-3 mb-4">
+          {/* Right: Cognitive Core Analysis */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="lg:col-span-6"
+          >
+            <div className="glass-card rounded-xl border border-matrix-border bg-space-deep p-6 shadow-2xl relative overflow-hidden">
+              {/* Card header */}
+              <div className="flex items-center justify-between border-b border-matrix-border/20 pb-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded bg-matrix-green inline-block animate-pulse" />
-                  <span className="font-mono text-[10px] text-text-secondary uppercase tracking-widest">Tech Architecture</span>
+                  <span className="h-2 w-2 rounded-full bg-matrix-green animate-pulse" />
+                  <span className="font-mono text-[10px] text-text-secondary uppercase tracking-widest">Cognitive Core Analysis</span>
                 </div>
-                <span className="font-mono text-[9px] text-text-muted">Hover to explore</span>
+                <span className="font-mono text-[9px] text-text-muted border border-matrix-border/40 px-2 py-0.5 rounded">PROFILE_SCAN v1.0</span>
               </div>
 
-              {/* Architecture Layers */}
-              <div className="flex flex-col items-center gap-2 relative">
-                
-                {/* 1. Frontend Layer */}
-                <button
-                  onMouseEnter={() => setHoveredLayer("client")}
-                  className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
-                    hoveredLayer === "client" 
-                      ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                  }`}
-                >
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className={hoveredLayer === "client" ? "text-matrix-green font-bold" : "text-text-muted"}>[01]</span>
-                    <span className="text-[8px] bg-matrix-green/10 border border-matrix-green/20 px-1 rounded text-matrix-green uppercase">Frontend</span>
-                  </div>
-                  <div className={`text-[12px] font-bold mt-1 ${hoveredLayer === "client" ? "text-matrix-bright" : "text-text-primary"}`}>Frontend</div>
-                </button>
-
-                {/* Connector */}
-                <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  {hoveredLayer === "client" && (
-                    <motion.div 
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="w-1.5 h-1.5 rounded-full bg-matrix-green shadow-[0_0_5px_rgba(0,255,65,0.8)]"
-                    />
-                  )}
+              {/* Terminal identity block */}
+              <div className="mb-6 rounded-lg bg-black/40 border border-matrix-green/10 p-4 font-mono text-[11px] space-y-1">
+                <div className="flex gap-3">
+                  <span className="text-text-muted w-24 shrink-0">OPERATOR</span>
+                  <span className="text-matrix-green">Adnan Sami (samibyte)</span>
                 </div>
-
-                {/* 2. API Layer */}
-                <button
-                  onMouseEnter={() => setHoveredLayer("gateway")}
-                  className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
-                    hoveredLayer === "gateway" 
-                      ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                  }`}
-                >
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className={hoveredLayer === "gateway" ? "text-matrix-green font-bold" : "text-text-muted"}>[02]</span>
-                    <span className="text-[8px] bg-sky-500/10 border border-sky-500/20 px-1 rounded text-sky-400 uppercase">API</span>
-                  </div>
-                  <div className={`text-[12px] font-bold mt-1 ${hoveredLayer === "gateway" ? "text-matrix-bright" : "text-text-primary"}`}>API Layer</div>
-                </button>
-
-                {/* Connector */}
-                <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  {hoveredLayer === "gateway" && (
-                    <motion.div 
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="w-1.5 h-1.5 rounded-full bg-matrix-green shadow-[0_0_5px_rgba(0,255,65,0.8)]"
-                    />
-                  )}
+                <div className="flex gap-3">
+                  <span className="text-text-muted w-24 shrink-0">LOCATION</span>
+                  <span className="text-text-primary">Dhaka, Bangladesh</span>
                 </div>
-
-                {/* 3. Backend Layer */}
-                <button
-                  onMouseEnter={() => setHoveredLayer("engine")}
-                  className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
-                    hoveredLayer === "engine" 
-                      ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                  }`}
-                >
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className={hoveredLayer === "engine" ? "text-matrix-green font-bold" : "text-text-muted"}>[03]</span>
-                    <span className="text-[8px] bg-amber-500/10 border border-amber-500/20 px-1 rounded text-amber-400 uppercase">Server</span>
-                  </div>
-                  <div className={`text-[12px] font-bold mt-1 ${hoveredLayer === "engine" ? "text-matrix-bright" : "text-text-primary"}`}>Backend</div>
-                </button>
-
-                {/* Connector */}
-                <div className="h-4 flex flex-col justify-center items-center pointer-events-none gap-0.5">
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  <span className="h-1.5 w-px bg-matrix-green/30" />
-                  {hoveredLayer === "engine" && (
-                    <motion.div 
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="w-1.5 h-1.5 rounded-full bg-matrix-green shadow-[0_0_5px_rgba(0,255,65,0.8)]"
-                    />
-                  )}
+                <div className="flex gap-3">
+                  <span className="text-text-muted w-24 shrink-0">DESIGNATION</span>
+                  <span className="text-text-primary">Full-Stack Developer</span>
                 </div>
-
-                {/* 4. Database Layer */}
-                <button
-                  onMouseEnter={() => setHoveredLayer("datastore")}
-                  className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative group overflow-hidden ${
-                    hoveredLayer === "datastore" 
-                      ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                  }`}
-                >
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className={hoveredLayer === "datastore" ? "text-matrix-green font-bold" : "text-text-muted"}>[04]</span>
-                    <span className="text-[8px] bg-purple-500/10 border border-purple-500/20 px-1 rounded text-purple-400 uppercase">Storage</span>
-                  </div>
-                  <div className={`text-[12px] font-bold mt-1 ${hoveredLayer === "datastore" ? "text-matrix-bright" : "text-text-primary"}`}>Database</div>
-                </button>
-
-                {/* Desktop sidebar DevOps block */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-1">
-                  <span className="h-6 w-px bg-matrix-green/30" />
-                  <button
-                    onMouseEnter={() => setHoveredLayer("containment")}
-                    className={`w-[110px] px-2 py-3 rounded-lg border font-mono text-center transition-all duration-300 relative group text-[10px] ${
-                      hoveredLayer === "containment"
-                        ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                        : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                    }`}
-                  >
-                    <div className="font-bold text-matrix-green text-[8px] mb-1">DEVOPS</div>
-                    <div className="font-bold text-text-primary uppercase leading-tight">Tools &</div>
-                    <div className="text-[7px] text-text-muted uppercase mt-0.5">Deployment</div>
-                  </button>
-                  <span className="h-6 w-px bg-matrix-green/30" />
+                <div className="flex gap-3">
+                  <span className="text-text-muted w-24 shrink-0">MODE</span>
+                  <span className="text-amber-400">Analytical · Methodical · Disciplined</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-text-muted w-24 shrink-0">STATUS</span>
+                  <span className="text-matrix-green flex items-center gap-1.5">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-matrix-green animate-pulse" />
+                    Available for work
+                  </span>
                 </div>
               </div>
 
-              {/* Mobile DevOps block */}
-              <div className="xl:hidden mt-3 flex justify-center">
-                <button
-                  onMouseEnter={() => setHoveredLayer("containment")}
-                  className={`w-full max-w-[340px] px-4 py-2.5 rounded-lg border font-mono text-left transition-all duration-300 relative ${
-                    hoveredLayer === "containment"
-                      ? "bg-matrix-green/10 border-matrix-green glow-green-box scale-102"
-                      : "bg-white/2 border-matrix-border/50 text-text-secondary hover:border-matrix-green/60"
-                  }`}
-                >
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className={hoveredLayer === "containment" ? "text-matrix-green font-bold" : "text-text-muted"}>[05]</span>
-                    <span className="text-[8px] bg-emerald-500/10 border border-emerald-500/20 px-1 rounded text-emerald-400 uppercase">Automation</span>
-                  </div>
-                  <div className={`text-[12px] font-bold mt-1 ${hoveredLayer === "containment" ? "text-matrix-bright" : "text-text-primary"}`}>DevOps & Tools</div>
-                </button>
+              {/* Trait bars */}
+              <div className="space-y-5">
+                {cognitiveTraits.map((trait, i) => (
+                  <TraitBar key={trait.label} {...trait} index={i} />
+                ))}
               </div>
 
-              {/* Details Panel */}
-              <div className="border border-matrix-green/10 bg-black/40 rounded-lg p-4 mt-5 relative min-h-[170px] flex flex-col justify-between">
-                <span className="absolute top-[2px] right-3 font-mono text-[7px] text-text-muted uppercase">DETAILS</span>
-                
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={hoveredLayer}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-3 font-mono text-[11px]"
-                  >
-                    <div>
-                      <span className="text-text-muted uppercase text-[9px]">Layer: </span>
-                      <span className="text-matrix-bright font-bold uppercase tracking-wider">{currentStats.name}</span>
-                    </div>
-
-                    <div>
-                      <span className="text-text-muted uppercase text-[9px]">Technologies: </span>
-                      <div className="flex flex-wrap gap-1.5 mt-1 text-[9px] text-text-primary">
-                        {currentStats.technologies.map((tech: string) => (
-                          <span key={tech} className="bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3 text-[10px] text-text-secondary border-t border-white/5 pt-2 mt-2">
-                      <div>
-                        <span className="text-[8px] text-text-muted block uppercase">Rendering</span>
-                        <span className="font-bold text-text-primary">{currentStats.specs.latency}</span>
-                      </div>
-                      <div>
-                        <span className="text-[8px] text-text-muted block uppercase">Type Safety</span>
-                        <span className="font-bold text-text-primary">{currentStats.specs.typeSafety}</span>
-                      </div>
-                    </div>
-
-                    <div className="text-[10.5px] text-text-secondary leading-relaxed font-sans border-t border-white/5 pt-2">
-                      {currentStats.specs.details}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+              {/* Personality quote */}
+              <div className="mt-6 rounded-lg border border-matrix-green/10 bg-matrix-green/5 p-4">
+                <p className="font-mono text-[10px] text-matrix-green/60 leading-relaxed italic">
+                  &ldquo;Communication style favours clarity, restraint, and substance over charisma or hype. Approaches decisions methodically after gathering sufficient evidence.&rdquo;
+                </p>
               </div>
-
-            </motion.div>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                { label: "Years", value: "2+" },
-                { label: "Projects", value: "10+" },
-                { label: "Motivation", value: "∞" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                  className="rounded-lg border border-matrix-border/30 bg-white/2 p-4 text-center backdrop-blur-sm transition-all hover:bg-matrix-green/5 hover:border-matrix-green/60"
-                >
-                  <h3 className="glow-green font-mono text-2xl font-bold text-matrix-green">
-                    <Counter value={stat.value} />
-                  </h3>
-                  <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-text-muted">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
             </div>
+          </motion.div>
+        </div>
+
+        {/* ── SECTION 2: Programming Journey ────────────────────── */}
+        <div className="space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <AboutSectionHeader
+              label="OPERATIONAL LOG"
+              title="Programming Journey"
+              desc="A timeline of structured learning and professional work — each step adding meaningful depth, not just breadth."
+            />
+          </motion.div>
+
+          <div className="relative border-l border-matrix-border ml-4 md:ml-6 space-y-10 pl-6 md:pl-8 py-2">
+            {journeyEvents.map((event, index) => (
+              <motion.div
+                key={event.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="relative group space-y-3"
+              >
+                {/* Timeline Marker */}
+                <div className="absolute left-[-30px] md:left-[-38px] top-2 h-4 w-4 rounded-full border border-matrix-green bg-space-black transition-all group-hover:bg-matrix-green group-hover:shadow-[0_0_10px_rgba(0,255,65,0.8)]" />
+
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="font-mono text-xs font-bold text-matrix-green/75 tracking-wider bg-matrix-green/5 border border-matrix-green/20 px-3 py-1 rounded">
+                    {event.year}
+                  </span>
+                  <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded border ${
+                    event.type === "work"
+                      ? "text-amber-400 bg-amber-500/10 border-amber-500/20"
+                      : "text-cyan-400 bg-cyan-500/10 border-cyan-500/20"
+                  }`}>
+                    {event.type === "work" ? "Work" : "Learning"}
+                  </span>
+                </div>
+
+                <div className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl hover:bg-matrix-green/2 hover:border-matrix-green/40 transition-all duration-300">
+                  <h3 className="font-mono text-lg font-bold text-text-primary group-hover:text-matrix-green transition-colors duration-300">
+                    {event.title}
+                  </h3>
+                  <h4 className="font-mono text-xs text-text-muted mt-1 uppercase tracking-wider">
+                    {event.subtitle}
+                  </h4>
+                  <p className="font-sans text-sm text-text-secondary leading-relaxed mt-4">
+                    {event.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-4 font-mono text-[9px] text-text-secondary">
+                    {event.tech.map((t) => (
+                      <span key={t} className="bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {event.credential && (
+                    <div className="mt-5 pt-4 border-t border-matrix-border/20">
+                      <a
+                        href={event.credential}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-matrix-green border border-matrix-green/30 bg-matrix-green/5 px-4 py-2 rounded hover:bg-matrix-green/15 hover:border-matrix-green/60 hover:shadow-[0_0_12px_rgba(0,255,65,0.15)] transition-all duration-300 group"
+                      >
+                        <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110">
+                          <circle cx="12" cy="8" r="7" />
+                          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                        </svg>
+                        View Credential
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* Section 2: Skill Level Bars */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-card border border-matrix-border/30 p-8 rounded-xl bg-space-deep relative overflow-hidden"
-        >
-          <h2 className="glow-green font-mono text-xl font-bold text-matrix-green mb-8 flex items-center gap-2">
-            <span>&gt; Skill Level</span>
-            <span className="h-[2px] flex-1 bg-matrix-green/20" />
-          </h2>
-
-          <div className="space-y-6">
-            {diagnosticBars.map((bar) => (
-              <div key={bar.label} className="space-y-2">
-                <div className="flex flex-col sm:flex-row sm:justify-between font-mono text-xs text-text-secondary gap-1">
-                  <span>{bar.label}</span>
-                  <span className="text-matrix-green font-bold">{bar.percentage}%</span>
-                </div>
-                <div className="flex items-center gap-3 font-mono text-sm leading-tight text-matrix-green overflow-hidden">
-                  <span className="text-matrix-green/45 select-none">[</span>
-                  <span className="tracking-tighter select-none break-all">{bar.blocks}</span>
-                  <span className="text-matrix-green/45 select-none">]</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Section 3: How I Work */}
+        {/* ── SECTION 3: Work I Enjoy ────────────────────────────── */}
         <div className="space-y-12">
-          <div className="text-center md:text-left">
-            <h2 className="glow-green font-mono text-2xl font-bold text-matrix-green">
-              &gt; How I Work
-            </h2>
-            <div className="mt-3 h-1 w-20 bg-matrix-green/50 mx-auto md:mx-0" />
-            <p className="mt-4 text-sm text-text-secondary max-w-xl">
-              The principles that guide my development approach.
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <AboutSectionHeader
+              label="SPECIALIZATION"
+              title="Work I Enjoy"
+              desc="The kinds of engineering problems that hold my attention — where getting it right matters more than getting it done."
+            />
+          </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {corePhilosophy.map((item, i) => (
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {workEnjoyedItems.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl relative hover:bg-matrix-green/2 hover:border-matrix-green/60 transition-all duration-300 group"
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl relative hover:bg-matrix-green/3 hover:border-matrix-green/50 transition-all duration-300 group"
               >
-                <div className="absolute top-4 right-4 opacity-30 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute top-4 right-4 opacity-25 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
                   {item.icon}
                 </div>
-                <h3 className="font-mono text-md font-bold text-text-primary uppercase tracking-wide mb-3 mt-4">
+                <div className="font-mono text-[9px] text-text-muted uppercase tracking-widest mb-3">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="font-mono text-sm font-bold text-text-primary uppercase tracking-wide mb-3 group-hover:text-matrix-green transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="font-sans text-sm text-text-secondary leading-relaxed">
@@ -505,68 +469,71 @@ const AboutClient = () => {
           </div>
         </div>
 
-        {/* Section 4: Experience Timeline */}
+        {/* ── SECTION 4: Hobbies & Interests ───────────────────── */}
         <div className="space-y-12">
-          <div>
-            <h2 className="glow-green font-mono text-2xl font-bold text-matrix-green">
-              &gt; Experience
-            </h2>
-            <div className="mt-3 h-1 w-20 bg-matrix-green/50" />
-            <p className="mt-4 text-sm text-text-secondary">
-              My work history and professional training.
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <AboutSectionHeader
+              label="SUBNET OPERATIONS"
+              title="Outside the Terminal"
+              desc="What I do when not writing code — interests that reinforce the same values: patience, depth, and strategic thinking."
+            />
+          </motion.div>
 
-          <div className="relative border-l border-matrix-border ml-4 md:ml-6 space-y-10 pl-6 md:pl-8 py-2">
-            {timelineEvents.map((event, index) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {hobbies.map((hobby, i) => (
               <motion.div
-                key={event.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                key={hobby.title}
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="relative group space-y-3"
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className={`relative rounded-xl border ${hobby.border} bg-linear-to-b ${hobby.color} to-space-deep/60 p-7 overflow-hidden group hover:shadow-[0_0_30px_rgba(0,255,65,0.07)] transition-all duration-500`}
               >
-                {/* Timeline Marker */}
-                <div className="absolute left-[-30px] md:left-[-38px] top-1.5 h-4 w-4 rounded-full border border-matrix-green bg-space-black transition-all group-hover:bg-matrix-green group-hover:shadow-[0_0_10px_rgba(0,255,65,0.8)]" />
-                
-                <span className="font-mono text-xs font-bold text-matrix-green/75 tracking-wider bg-matrix-green/5 border border-matrix-green/20 px-3 py-1 rounded">
-                  {event.year}
-                </span>
+                {/* Corner decoration */}
+                <span className="absolute top-0 right-0 w-0 h-0 border-t-40 border-r-40 border-t-transparent border-r-white/2" />
 
-                <div className="glass-card border border-matrix-border bg-white/1 p-6 rounded-xl hover:bg-matrix-green/1.5 hover:border-matrix-green/40 transition-all duration-300">
-                  <h3 className="font-mono text-lg font-bold text-text-primary group-hover:text-matrix-green transition-colors duration-300">
-                    {event.title}
-                  </h3>
-                  <h4 className="font-mono text-xs text-text-muted mt-1 uppercase tracking-wider">
-                    {event.subtitle}
-                  </h4>
-                  <p className="font-sans text-sm text-text-secondary leading-relaxed mt-4">
-                    {event.desc}
-                  </p>
+                <div className="mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.3)]">
+                  {hobby.icon}
+                </div>
 
-                  <div className="flex flex-wrap gap-2 mt-4 font-mono text-[9px] text-text-secondary">
-                    {event.tech.map((t) => (
-                      <span key={t} className="bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mb-1">
+                  <span className="font-mono text-[9px] tracking-[0.25em] text-text-muted uppercase">{hobby.tag}</span>
+                </div>
+                <h3 className="font-mono text-xl font-bold text-text-primary mb-3 group-hover:text-matrix-green transition-colors duration-300">
+                  {hobby.title}
+                </h3>
+                <p className="font-sans text-sm text-text-secondary leading-relaxed">
+                  {hobby.desc}
+                </p>
+
+                {/* Scanline effect on hover */}
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div
+                    className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,65,0.8) 3px, rgba(0,255,65,0.8) 4px)`,
+                    }}
+                  />
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* CTA: View Skills */}
-        <div className="text-center pt-8">
+        {/* ── CTA ────────────────────────────────────────────────── */}
+        <div className="text-center pt-4">
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block"
           >
-            <a 
-              href="/skills" 
+            <a
+              href="/skills"
               className="inline-flex items-center gap-3 rounded-md border border-matrix-green/30 bg-matrix-green/5 px-8 py-3.5 font-mono text-xs font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green/10 hover:shadow-[0_0_15px_rgba(0,255,65,0.1)]"
             >
               View All Skills

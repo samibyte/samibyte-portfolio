@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Reorder, motion, AnimatePresence } from "framer-motion";
 import type { Project } from "@/data/projects";
 import ProjectForm from "./ProjectForm";
@@ -12,23 +12,36 @@ const AdminDashboard = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
 
-  const fetchProjects = async () => {
+
+  const fetchProjects = useCallback(async () => {
     setIsLoading(true);
     try {
       const res = await fetch("/api/admin/projects");
       const data = await res.json();
       setProjects(data);
-    } catch (e) {
+    } catch {
       console.error("Failed to fetch projects");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
+  useEffect(() => {
+    const load = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch("/api/admin/projects");
+        const data = await res.json();
+        setProjects(data);
+      } catch {
+        console.error("Failed to fetch projects");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
+  }, []);
   const handleReorder = async (newOrder: Project[]) => {
     setProjects(newOrder);
     try {
@@ -68,7 +81,7 @@ const AdminDashboard = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h2 className="glow-green font-mono text-4xl font-black tracking-tighter text-matrix-green uppercase">
-            // Mission_Logs
+            &lt; Mission_Logs &gt;
           </h2>
           <p className="mt-2 font-mono text-xs text-text-muted uppercase tracking-[0.2em]">
             Manage project deployment sequences and technical logs.
