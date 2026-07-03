@@ -1,4 +1,5 @@
 import { prisma } from "./prisma";
+import { Prisma } from "@prisma/client";
 import { Project, TechItem } from "@/data/projects";
 
 /**
@@ -30,22 +31,22 @@ export async function saveProject(project: Project): Promise<Project> {
     where: { id },
     update: {
       ...rest,
-      techStack: tech as any,
+      techStack: tech as unknown as Prisma.InputJsonValue,
       problem: caseStudy.problem,
       solution: caseStudy.solution,
       challenges: caseStudy.challenges,
       learnings: caseStudy.learnings,
-      results: caseStudy.results as any,
+      results: caseStudy.results as unknown as Prisma.InputJsonValue,
     },
     create: {
       id,
       ...rest,
-      techStack: tech as any,
+      techStack: tech as unknown as Prisma.InputJsonValue,
       problem: caseStudy.problem,
       solution: caseStudy.solution,
       challenges: caseStudy.challenges,
       learnings: caseStudy.learnings,
-      results: caseStudy.results as any,
+      results: caseStudy.results as unknown as Prisma.InputJsonValue,
     },
   });
 
@@ -71,7 +72,7 @@ export async function reorderProjects(ids: string[]): Promise<void> {
 
 // ─── Mapping Helper ───────────────────────────────────────────
 
-function mapDbProjectToProject(dbProject: any): Project {
+function mapDbProjectToProject(dbProject: Prisma.ProjectGetPayload<Record<string, never>>): Project {
   return {
     id: dbProject.id,
     title: dbProject.title,
@@ -81,13 +82,13 @@ function mapDbProjectToProject(dbProject: any): Project {
     githubUrl: dbProject.githubUrl,
     demoUrl: dbProject.demoUrl,
     order: dbProject.order,
-    tech: dbProject.techStack as TechItem[],
+    tech: dbProject.techStack as unknown as TechItem[],
     caseStudy: {
       problem: dbProject.problem,
       solution: dbProject.solution,
       challenges: dbProject.challenges,
       learnings: dbProject.learnings,
-      results: dbProject.results as string[],
+      results: dbProject.results as unknown as string[],
     },
   };
 }
