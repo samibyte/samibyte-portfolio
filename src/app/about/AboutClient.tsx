@@ -290,7 +290,7 @@ const AboutClient = () => {
                 className="inline-flex items-center gap-3 rounded-md border border-matrix-green bg-matrix-green/5 px-8 py-3.5 font-mono text-sm font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black hover:shadow-[0_0_25px_rgba(0,255,65,0.3)]"
               >
                 <IconDownload className="text-lg" />
-                Download Resume
+                View Resume
               </a>
             </motion.div>
           </motion.div>

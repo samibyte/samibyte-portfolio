@@ -142,7 +142,7 @@ const AboutSection = () => {
                 className="inline-flex items-center gap-3 rounded-md border border-matrix-green/40 bg-matrix-green/5 px-7 py-3.5 font-mono text-sm font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black hover:shadow-[0_0_20px_rgba(0,255,65,0.2)]"
               >
                 <IconDownload size={16} />
-                DOWNLOAD CV
+                VIEW RESUME
               </a>
             </motion.div>
           </motion.div>
