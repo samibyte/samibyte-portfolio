@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IconDownload, IconCpu, IconZap, IconTarget, IconArrowNarrowRight, IconAward, IconFilm, IconPlay } from "@/components/ui/Icons";
+import { IconCpu, IconZap, IconTarget, IconArrowNarrowRight, IconAward, IconFilm, IconPlay } from "@/components/ui/Icons";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 // ─── Custom SVG Icons ────────────────────────────────────────
@@ -289,8 +289,8 @@ const AboutClient = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-md border border-matrix-green bg-matrix-green/5 px-8 py-3.5 font-mono text-sm font-bold tracking-widest text-matrix-green transition-all hover:bg-matrix-green hover:text-space-black hover:shadow-[0_0_25px_rgba(0,255,65,0.3)]"
               >
-                <IconDownload className="text-lg" />
                 View Resume
+                <IconArrowNarrowRight className="text-lg" />
               </a>
             </motion.div>
           </motion.div>
