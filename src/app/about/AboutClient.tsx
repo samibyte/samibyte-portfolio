@@ -249,7 +249,7 @@ const AboutClient = () => {
 
             <div className="space-y-5 font-sans text-[16.5px] leading-relaxed text-text-secondary">
               <p>
-                Hi, I&apos;m <span className="text-matrix-green font-semibold">Adnan Sami</span>, a full-stack developer from Dhaka, Bangladesh. I go by <span className="font-mono text-matrix-green">samibyte</span> online.
+                Hi, I&apos;m <span className="text-matrix-green font-semibold">Sami Adnan</span>, a full-stack developer from Dhaka, Bangladesh. I go by <span className="font-mono text-matrix-green">samibyte</span> online.
               </p>
               <p>
                 I started with HTML and CSS out of curiosity, built small things to understand how they worked, and kept going. What I found appealing wasn&apos;t just building; it was figuring out <em>why</em> something worked, or didn&apos;t.
@@ -316,7 +316,7 @@ const AboutClient = () => {
               <div className="mb-6 rounded-lg bg-black/40 border border-matrix-green/10 p-4 font-mono text-[11px] space-y-1">
                 <div className="flex gap-3">
                   <span className="text-text-muted w-24 shrink-0">OPERATOR</span>
-                  <span className="text-matrix-green">Adnan Sami (samibyte)</span>
+                  <span className="text-matrix-green">Sami Adnan (samibyte)</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="text-text-muted w-24 shrink-0">LOCATION</span>
