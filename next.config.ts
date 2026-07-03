@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false, // Ensure strict build checks
   },
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
   
   // Security headers and standard optimizations
   async headers() {
