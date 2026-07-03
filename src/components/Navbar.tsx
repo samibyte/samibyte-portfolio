@@ -103,11 +103,11 @@ const Navbar = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="relative z-50 text-2xl text-text-primary transition-colors duration-300 hover:text-matrix-green md:hidden"
+            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-md text-text-primary transition-colors duration-300 hover:bg-matrix-green/10 hover:text-matrix-green md:hidden"
             aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? <IconX /> : <IconMenu />}
+            {isMobileOpen ? <IconX size={22} /> : <IconMenu size={22} />}
           </button>
         </div>
       </nav>

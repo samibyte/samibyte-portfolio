@@ -7,25 +7,25 @@ import Link from "next/link";
 
 const timeline = [
   {
-    year: "2026 — Present",
+    year: "2026 – Present",
     title: "Next Level Software Engineering",
     sub: "Programming Hero · Advanced Program",
     type: "learning",
   },
   {
-    year: "Dec 2025 — Feb 2026",
+    year: "Dec 2025 – Feb 2026",
     title: "Frontend Developer",
     sub: "Softvence Agency · Full-Time",
     type: "work",
   },
   {
-    year: "Jul 2025 — Jan 2026",
+    year: "Jul 2025 – Jan 2026",
     title: "Complete Web Development",
     sub: "Programming Hero · Foundation Program",
     type: "learning",
   },
   {
-    year: "2023 — 2025",
+    year: "2023 – 2025",
     title: "Self-Directed Study",
     sub: "HTML → CSS → JavaScript → React",
     type: "origin",

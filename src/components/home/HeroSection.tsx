@@ -25,7 +25,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-20 lg:pt-0">
       {/* Grid / Scanline Overlay */}
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020408_100%)]" />
@@ -39,7 +39,7 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="section-container relative z-20 flex min-h-screen w-full flex-col justify-center py-20 lg:py-0">
+      <div className="section-container relative z-20 flex w-full flex-col justify-center pt-8 lg:py-0">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-center w-full">
           
           {/* Left Column: Intro Text */}
@@ -216,7 +216,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden lg:block"
+          className="absolute -bottom-35 left-1/2 -translate-x-1/2 hidden lg:block"
         >
           <div className="flex flex-col items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">Initiating sequence</span>

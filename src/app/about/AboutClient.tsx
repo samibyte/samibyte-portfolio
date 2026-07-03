@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IconDownload, IconCpu, IconZap, IconTarget, IconArrowNarrowRight, IconAward } from "@/components/ui/Icons";
-import GlitchText from "@/components/ui/GlitchText";
+import { IconDownload, IconCpu, IconZap, IconTarget, IconArrowNarrowRight, IconAward, IconFilm, IconPlay } from "@/components/ui/Icons";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 // ─── Custom SVG Icons ────────────────────────────────────────
@@ -55,24 +54,24 @@ function IconBrain({ className = "", size = 24 }: { className?: string; size?: n
 
 const cognitiveTraits = [
   { label: "System Depth", value: 94, desc: "Prefers understanding how things work at the root level" },
-  { label: "Precision Quotient", value: 91, desc: "Precision over speed — methodical over reactive" },
+  { label: "Precision Quotient", value: 91, desc: "Precision over speed. Methodical over reactive." },
   { label: "Disciplined Learning", value: 88, desc: "Consistent, long-term investment in skill development" },
   { label: "Analytical Clarity", value: 90, desc: "Evidence-driven decisions, no assumptions without data" },
 ];
 
 const journeyEvents = [
   {
-    year: "MAY 2026 — PRESENT",
+    year: "MAY 2026 – PRESENT",
     title: "Next Level Software Engineering",
     subtitle: "Programming Hero · Advanced Program",
-    desc: "Studying system design, clean architecture, and production-grade engineering. The focus is on building maintainable systems that scale — not just features that ship.",
+    desc: "Studying system design, clean architecture, and production-grade engineering. The focus is on building maintainable systems that scale, not just features that ship.",
     tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Docker"],
     type: "learning",
     credential: null
   },
   {
-    year: "DEC 2025 — FEB 2026",
-    title: "Frontend Developer — Softvence Agency",
+    year: "DEC 2025 – FEB 2026",
+    title: "Frontend Developer at Softvence Agency",
     subtitle: "Full-Time · On-site",
     desc: "Built and maintained client-facing web applications. Worked on UI components, API integration, and authentication flows. Operated in a structured environment where requirements were defined, deadlines were firm, and code quality was non-negotiable.",
     tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "WordPress"],
@@ -80,19 +79,19 @@ const journeyEvents = [
     credential: null
   },
   {
-    year: "JUL 2025 — JAN 2026",
+    year: "JUL 2025 – JAN 2026",
     title: "Complete Web Development",
     subtitle: "Programming Hero · Foundation Program",
-    desc: "Covered the full stack: frontend fundamentals, server-side logic, database modeling, auth systems, and deployment pipelines. The program was structured — exactly how learning should be.",
+    desc: "Covered the full stack: frontend fundamentals, server-side logic, database modeling, auth systems, and deployment pipelines. The program was structured exactly how learning should be.",
     tech: ["JavaScript", "React", "Node.js", "MongoDB", "Express"],
     type: "learning",
     credential: "https://drive.google.com/file/d/1DbQea4pUBkOFazffpep1QpmKz7YLgTRE/view"
   },
   {
-    year: "2023 — JUL 2025",
+    year: "2023 – JUL 2025",
     title: "Self-Directed Study",
     subtitle: "Independent",
-    desc: "Started with the fundamentals out of curiosity. Learned HTML, CSS, and JavaScript — building small projects to understand how things actually worked rather than just following tutorials.",
+    desc: "Started with the fundamentals out of curiosity. Learned HTML, CSS, and JavaScript by building small projects to understand how things actually worked rather than just following tutorials.",
     tech: ["HTML", "CSS", "JavaScript", "Git"],
     type: "learning",
     credential: null
@@ -102,33 +101,33 @@ const journeyEvents = [
 const workEnjoyedItems = [
   {
     icon: <IconCpu className="text-matrix-green" size={26} />,
-    title: "Type-Safe Architecture",
-    desc: "Designing systems where TypeScript strict mode, schema validation (Zod), and strict API contracts eliminate entire categories of bugs before they exist."
+    title: "Building Full Stack Features",
+    desc: "Taking a feature from database schema to API endpoint to UI component. I enjoy owning the full picture and making sure each layer communicates cleanly with the next."
   },
   {
     icon: <IconTarget className="text-matrix-green" size={26} />,
-    title: "Database-First Thinking",
-    desc: "Building normalized schemas and modeling data relationships carefully before writing application logic. The schema is the contract — everything else follows."
+    title: "Designing Clean APIs",
+    desc: "Writing REST or GraphQL endpoints that are predictable, well-typed, and easy to consume. Good API design saves time for everyone, including future me."
   },
   {
     icon: <IconZap className="text-matrix-green" size={26} />,
-    title: "Performance Engineering",
-    desc: "Finding the real bottleneck. Not guessing — profiling, measuring, then optimizing server response, client bundle, and query execution with targeted precision."
+    title: "Interactive UI Development",
+    desc: "Building responsive interfaces that feel good to use. I pay close attention to layout, state transitions, and small details that users notice even if they cannot name them."
   },
   {
     icon: <IconBrain className="text-matrix-green" size={26} />,
-    title: "Deep-System Investigation",
-    desc: "Debugging at the protocol and infrastructure layer, not just the application surface. Understanding root causes so the fix solves the problem — not just the symptom."
+    title: "Debugging and Root Cause Analysis",
+    desc: "Tracing a bug to its actual source rather than patching around it. I find this kind of work satisfying because fixing the real problem makes the codebase more trustworthy."
   },
   {
     icon: <IconAward className="text-matrix-green" size={26} />,
-    title: "Long-Horizon Projects",
-    desc: "Preferring work that has meaningful depth over the sprint-then-forget cycle. Refactoring, documentation, and architectural clarity matter long after the first deploy."
+    title: "Authentication and Security",
+    desc: "Implementing secure login flows, token handling, and role-based access control correctly. Security is not an afterthought in any project I work on."
   },
   {
     icon: <IconArrowNarrowRight className="text-matrix-green" size={26} />,
-    title: "Clean Codebase Ownership",
-    desc: "Treating codebases as living systems that require discipline: consistent naming, separation of concerns, and no shortcuts that become next month's technical debt."
+    title: "Refactoring for Clarity",
+    desc: "Revisiting old code and making it easier to understand and extend. Good structure pays off over time, and I prefer working in codebases I can be proud of months later."
   },
 ];
 
@@ -137,15 +136,13 @@ const hobbies = [
     icon: <IconChess size={36} className="text-matrix-green" />,
     title: "Chess",
     tag: "STRATEGY · PATIENCE",
-    desc: "Not about memorizing openings — about evaluating positions, calculating consequences, and making the most precise move under uncertainty. The game rewards the same traits as good software: patience and forethought.",
     color: "from-matrix-green/10 to-transparent",
     border: "border-matrix-green/30",
   },
   {
     icon: <IconBook size={36} className="text-cyan-400" />,
     title: "Books",
-    tag: "NON-FICTION · SYSTEMS THINKING",
-    desc: "Mostly non-fiction, technical writing, and history. Reading is how I build mental models for complex systems — the same way I approach a new codebase. Slow, deliberate, structural.",
+    tag: "NON-FICTION · HISTORY",
     color: "from-cyan-500/10 to-transparent",
     border: "border-cyan-500/30",
   },
@@ -153,9 +150,22 @@ const hobbies = [
     icon: <IconController size={36} className="text-purple-400" />,
     title: "Gaming",
     tag: "STRATEGY · SIMULATION",
-    desc: "Strategy and simulation games. The kind with systems to analyze, resources to manage, and long-term trade-offs to think through. Not a hobby for relaxation — a different kind of problem-solving.",
     color: "from-purple-500/10 to-transparent",
     border: "border-purple-500/30",
+  },
+  {
+    icon: <IconFilm size={36} className="text-rose-400" />,
+    title: "Movies",
+    tag: "CINEMA · STORYTELLING",
+    color: "from-rose-500/10 to-transparent",
+    border: "border-rose-500/30",
+  },
+  {
+    icon: <IconPlay size={36} className="text-amber-400" />,
+    title: "Anime",
+    tag: "SERIES · ANIMATION",
+    color: "from-amber-500/10 to-transparent",
+    border: "border-amber-500/30",
   },
 ];
 
@@ -239,16 +249,16 @@ const AboutClient = () => {
 
             <div className="space-y-5 font-sans text-[16.5px] leading-relaxed text-text-secondary">
               <p>
-                Hi, I&apos;m <span className="text-matrix-green font-semibold">Adnan Sami</span> — a full-stack developer from Dhaka, Bangladesh. I go by <span className="font-mono text-matrix-green">samibyte</span> online.
+                Hi, I&apos;m <span className="text-matrix-green font-semibold">Adnan Sami</span>, a full-stack developer from Dhaka, Bangladesh. I go by <span className="font-mono text-matrix-green">samibyte</span> online.
               </p>
               <p>
-                I started with HTML and CSS out of curiosity, built small things to understand how they worked, and kept going. What I found appealing wasn&apos;t just building — it was figuring out <em>why</em> something worked, or didn&apos;t.
+                I started with HTML and CSS out of curiosity, built small things to understand how they worked, and kept going. What I found appealing wasn&apos;t just building; it was figuring out <em>why</em> something worked, or didn&apos;t.
               </p>
               <p>
                 I work with React, Next.js, TypeScript, and Node.js on the full stack. I care about type safety, schema integrity, and code that&apos;s readable six months from now by someone who isn&apos;t me.
               </p>
               <p>
-                My approach to engineering is methodical — I gather information before decisions, prefer precision over speed, and invest in understanding systems deeply rather than treating them as black boxes.
+                My approach to engineering is methodical. I gather information before decisions, prefer precision over speed, and invest in understanding systems deeply rather than treating them as black boxes.
               </p>
             </div>
 
@@ -357,7 +367,7 @@ const AboutClient = () => {
             <AboutSectionHeader
               label="OPERATIONAL LOG"
               title="Programming Journey"
-              desc="A timeline of structured learning and professional work — each step adding meaningful depth, not just breadth."
+              desc="A timeline of structured learning and professional work, each step adding meaningful depth, not just breadth."
             />
           </motion.div>
 
@@ -438,7 +448,7 @@ const AboutClient = () => {
             <AboutSectionHeader
               label="SPECIALIZATION"
               title="Work I Enjoy"
-              desc="The kinds of engineering problems that hold my attention — where getting it right matters more than getting it done."
+              desc="The kinds of engineering problems that hold my attention, where getting it right matters more than getting it done."
             />
           </motion.div>
 
@@ -480,36 +490,27 @@ const AboutClient = () => {
             <AboutSectionHeader
               label="SUBNET OPERATIONS"
               title="Outside the Terminal"
-              desc="What I do when not writing code — interests that reinforce the same values: patience, depth, and strategic thinking."
+              desc="What I do when not writing code. Interests that reinforce the same values: patience, depth, and strategic thinking."
             />
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
             {hobbies.map((hobby, i) => (
               <motion.div
                 key={hobby.title}
                 initial={{ opacity: 0, scale: 0.97 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className={`relative rounded-xl border ${hobby.border} bg-linear-to-b ${hobby.color} to-space-deep/60 p-7 overflow-hidden group hover:shadow-[0_0_30px_rgba(0,255,65,0.07)] transition-all duration-500`}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className={`relative rounded-xl border ${hobby.border} bg-linear-to-b ${hobby.color} to-space-deep/60 p-6 overflow-hidden group hover:shadow-[0_0_20px_rgba(0,255,65,0.07)] transition-all duration-500`}
               >
-                {/* Corner decoration */}
-                <span className="absolute top-0 right-0 w-0 h-0 border-t-40 border-r-40 border-t-transparent border-r-white/2" />
-
-                <div className="mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.3)]">
+                <div className="mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.3)]">
                   {hobby.icon}
                 </div>
-
-                <div className="mb-1">
-                  <span className="font-mono text-[9px] tracking-[0.25em] text-text-muted uppercase">{hobby.tag}</span>
-                </div>
-                <h3 className="font-mono text-xl font-bold text-text-primary mb-3 group-hover:text-matrix-green transition-colors duration-300">
+                <h3 className="font-mono text-base font-bold text-text-primary mb-1 group-hover:text-matrix-green transition-colors duration-300">
                   {hobby.title}
                 </h3>
-                <p className="font-sans text-sm text-text-secondary leading-relaxed">
-                  {hobby.desc}
-                </p>
+                <span className="font-mono text-[9px] tracking-[0.2em] text-text-muted uppercase">{hobby.tag}</span>
 
                 {/* Scanline effect on hover */}
                 <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
