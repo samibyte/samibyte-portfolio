@@ -1,16 +1,30 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { IconArrowNarrowRight } from "@/components/ui/Icons";
 import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
 import type { Project } from "@/data/projects";
 import SectionHeader from "../ui/SectionHeader";
+import { getProjects } from "@/lib/projectStore";
 
 interface ProjectsSectionProps {
   projects: Project[];
 }
 
-const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
+const ProjectsSection = ({ projects: initialProjects }: ProjectsSectionProps) => {
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+
+  useEffect(() => {
+    getProjects()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setProjects(data);
+        }
+      })
+      .catch((err) => console.error("Error fetching projects from backend server:", err));
+  }, []);
+
   return (
     <section className="py-20 relative bg-matrix-green/[0.01]">
        {/* Background blend */}

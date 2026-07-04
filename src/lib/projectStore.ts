@@ -1,94 +1,102 @@
-import { prisma } from "./prisma";
-import { Prisma } from "@prisma/client";
-import { Project, TechItem } from "@/data/projects";
+import type { Project, TechItem } from "@/data/projects";
+import fallbackProjects from "@/data/projects.json";
 
-/**
- * Service layer for managing projects via Prisma.
- * Handles mapping between DB model and frontend Project type.
- */
-
-export async function getProjects(): Promise<Project[]> {
-  const data = await prisma.project.findMany({
-    orderBy: { order: "asc" },
-  });
-
-  return data.map(mapDbProjectToProject);
+export interface RawProject {
+  id: string;
+  title?: string;
+  description?: string;
+  longDescription?: string;
+  videoUrl?: string | null;
+  githubUrl?: string;
+  demoUrl?: string;
+  order?: number;
+  tech?: TechItem[];
+  techStack?: TechItem[];
+  problem?: string;
+  solution?: string;
+  challenges?: string;
+  learnings?: string;
+  results?: string[];
+  caseStudy?: {
+    problem?: string;
+    solution?: string;
+    challenges?: string;
+    learnings?: string;
+    results?: string[];
+  };
 }
 
-export async function getProject(id: string): Promise<Project | null> {
-  const data = await prisma.project.findUnique({
-    where: { id },
-  });
-
-  if (!data) return null;
-  return mapDbProjectToProject(data);
-}
-
-export async function saveProject(project: Project): Promise<Project> {
-  const { tech, caseStudy, id, ...rest } = project;
-
-  const data = await prisma.project.upsert({
-    where: { id },
-    update: {
-      ...rest,
-      techStack: tech as unknown as Prisma.InputJsonValue,
-      problem: caseStudy.problem,
-      solution: caseStudy.solution,
-      challenges: caseStudy.challenges,
-      learnings: caseStudy.learnings,
-      results: caseStudy.results as unknown as Prisma.InputJsonValue,
-    },
-    create: {
-      id,
-      ...rest,
-      techStack: tech as unknown as Prisma.InputJsonValue,
-      problem: caseStudy.problem,
-      solution: caseStudy.solution,
-      challenges: caseStudy.challenges,
-      learnings: caseStudy.learnings,
-      results: caseStudy.results as unknown as Prisma.InputJsonValue,
-    },
-  });
-
-  return mapDbProjectToProject(data);
-}
-
-export async function deleteProject(id: string): Promise<void> {
-  await prisma.project.delete({
-    where: { id },
-  });
-}
-
-export async function reorderProjects(ids: string[]): Promise<void> {
-  await prisma.$transaction(
-    ids.map((id, index) =>
-      prisma.project.update({
-        where: { id },
-        data: { order: index },
-      })
-    )
-  );
-}
-
-// ─── Mapping Helper ───────────────────────────────────────────
-
-function mapDbProjectToProject(dbProject: Prisma.ProjectGetPayload<Record<string, never>>): Project {
+// Helper to map flat project structures to the nested case study structure
+export function normalizeProject(data: RawProject): Project {
   return {
-    id: dbProject.id,
-    title: dbProject.title,
-    description: dbProject.description,
-    longDescription: dbProject.longDescription,
-    videoUrl: dbProject.videoUrl,
-    githubUrl: dbProject.githubUrl,
-    demoUrl: dbProject.demoUrl,
-    order: dbProject.order,
-    tech: dbProject.techStack as unknown as TechItem[],
+    id: data.id,
+    title: data.title || "",
+    description: data.description || "",
+    longDescription: data.longDescription || "",
+    videoUrl: data.videoUrl,
+    githubUrl: data.githubUrl || "",
+    demoUrl: data.demoUrl || "",
+    order: typeof data.order === 'number' ? data.order : 0,
+    tech: data.tech || data.techStack || [],
     caseStudy: {
-      problem: dbProject.problem,
-      solution: dbProject.solution,
-      challenges: dbProject.challenges,
-      learnings: dbProject.learnings,
-      results: dbProject.results as unknown as string[],
+      problem: data.caseStudy?.problem || data.problem || "",
+      solution: data.caseStudy?.solution || data.solution || "",
+      challenges: data.caseStudy?.challenges || data.challenges || "",
+      learnings: data.caseStudy?.learnings || data.learnings || "",
+      results: data.caseStudy?.results || data.results || [],
     },
   };
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
+export async function getProjects(): Promise<Project[]> {
+  // If compiling on server, or if URL is not configured
+  if (typeof window === "undefined" || !API_URL) {
+    const rawList = fallbackProjects as RawProject[];
+    return rawList.map(normalizeProject);
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/api/projects`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) {
+      throw new Error(`Uplink fail: ${res.status}`);
+    }
+    const data = (await res.json()) as RawProject[];
+    return data.map(normalizeProject);
+  } catch (error) {
+    console.warn("Backend server request failed. Falling back to local static JSON data.", error);
+    const rawList = fallbackProjects as RawProject[];
+    return rawList.map(normalizeProject);
+  }
+}
+
+export async function getProject(slug: string): Promise<Project | null> {
+  // If compiling on server, or if URL is not configured
+  if (typeof window === "undefined" || !API_URL) {
+    const rawList = fallbackProjects as RawProject[];
+    const item = rawList.find((p) => p.id === slug);
+    return item ? normalizeProject(item) : null;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/api/projects/${encodeURIComponent(slug)}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) {
+      if (res.status === 404) return null;
+      throw new Error(`Uplink fail: ${res.status}`);
+    }
+    const data = (await res.json()) as RawProject;
+    return normalizeProject(data);
+  } catch (error) {
+    console.warn(`Backend request for slug ${slug} failed. Falling back to local static JSON data.`, error);
+    const rawList = fallbackProjects as RawProject[];
+    const item = rawList.find((p) => p.id === slug);
+    return item ? normalizeProject(item) : null;
+  }
 }

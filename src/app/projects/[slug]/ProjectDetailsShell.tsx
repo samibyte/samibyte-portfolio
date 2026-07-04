@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import BrandIcon from "@/components/ui/BrandIcon";
 import type { Project } from "@/data/projects";
+import { getProject } from "@/lib/projectStore";
 
 interface Props {
   project: Project;
@@ -21,8 +22,19 @@ const chapters = [
   { id: "triumph",   label: "The Outcome",   num: "04", icon: <IconAward />,           color: "green"  as const },
 ];
 
-const ProjectDetailsShell = ({ project }: Props) => {
+const ProjectDetailsShell = ({ project: initialProject }: Props) => {
+  const [project, setProject] = useState<Project>(initialProject);
   const [activeSection, setActiveSection] = useState("overview");
+
+  useEffect(() => {
+    getProject(initialProject.id)
+      .then((data) => {
+        if (data) {
+          setProject(data);
+        }
+      })
+      .catch((err) => console.error("Error updating project details from backend:", err));
+  }, [initialProject.id]);
   const isScrolling = useRef(false);
 
   useEffect(() => {

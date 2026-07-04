@@ -1,14 +1,28 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ui/ProjectCard";
 import type { Project } from "@/data/projects";
+import { getProjects } from "@/lib/projectStore";
 
 interface Props {
   projects: Project[];
 }
 
-const ProjectsClient = ({ projects }: Props) => {
+const ProjectsClient = ({ projects: initialProjects }: Props) => {
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+
+  useEffect(() => {
+    getProjects()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setProjects(data);
+        }
+      })
+      .catch((err) => console.error("Error fetching projects from backend server:", err));
+  }, []);
+
   return (
     <div className="relative min-h-screen pt-32 pb-20">
       {/* Background Decorative Element */}

@@ -1,0 +1,50 @@
+[debug] [2026-07-03T23:43:31.103Z] ----------------------------------------------------------------------
+[debug] [2026-07-03T23:43:31.105Z] Command:       /home/samibyte/.nvm/versions/node/v24.15.0/bin/node /home/samibyte/.local/share/pnpm/global/5/.pnpm/firebase-tools@15.14.0_@types+node@25.5.0_typescript@6.0.3/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2026-07-03T23:43:31.106Z] CLI Version:   15.14.0
+[debug] [2026-07-03T23:43:31.106Z] Platform:      linux
+[debug] [2026-07-03T23:43:31.106Z] Node Version:  v24.15.0
+[debug] [2026-07-03T23:43:31.106Z] Time:          Sat Jul 04 2026 05:43:31 GMT+0600 (Bangladesh Standard Time)
+[debug] [2026-07-03T23:43:31.106Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/samibyte/projects/samibyte-portfolio
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-07-03T23:43:31.778Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-03T23:43:31.779Z] > authorizing via signed-in user (samibyte.web@gmail.com)
+[debug] [2026-07-03T23:43:31.779Z] Checked if tokens are valid: true, expires at: 1783124980719
+[debug] [2026-07-03T23:43:31.779Z] Checked if tokens are valid: true, expires at: 1783124980719
+[debug] [2026-07-03T23:43:31.780Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/samibyte [none]
+[debug] [2026-07-03T23:43:32.334Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/samibyte 200
+[debug] [2026-07-03T23:43:32.334Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/samibyte {"projectId":"samibyte","projectNumber":"1055298216454","displayName":"samibyte","name":"projects/samibyte","resources":{"hostingSite":"samibyte"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_a68d0b63-c83a-4e02-a1f3-0b348229f914"}
+[info] i  Using project samibyte (samibyte) . 
+[info] 
+=== Hosting Setup
+[info] 
+[debug] [2026-07-03T23:43:48.767Z] Checked if tokens are valid: true, expires at: 1783124980719
+[debug] [2026-07-03T23:43:48.767Z] Checked if tokens are valid: true, expires at: 1783124980719
+[debug] [2026-07-03T23:43:48.767Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/samibyte [none]
+[debug] [2026-07-03T23:43:49.430Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/samibyte 200
+[debug] [2026-07-03T23:43:49.430Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/samibyte {"projectId":"samibyte","projectNumber":"1055298216454","displayName":"samibyte","name":"projects/samibyte","resources":{"hostingSite":"samibyte"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_a68d0b63-c83a-4e02-a1f3-0b348229f914"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
